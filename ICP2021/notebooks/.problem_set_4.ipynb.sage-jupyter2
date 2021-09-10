@@ -1,0 +1,6 @@
+{"backend_state":"init","kernel":"python3","kernel_state":"idle","kernel_usage":{"cpu":0,"memory":0},"metadata":{"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.8.3"}},"trust":false,"type":"settings"}
+{"cell_type":"code","exec_count":1,"id":"c92147","input":"# Escriba el código en esta celda","pos":2,"type":"cell"}
+{"cell_type":"markdown","id":"5b245f","input":"### Problema \n\n- Implemente el cálculo del área bajo una curva o de una figura geométrica usando POO.\n\n![](https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/uml_mc.png)\n\n- Monte Carlo: ejemplo.\n\n![](https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/mc_area.png)","pos":1,"type":"cell"}
+{"cell_type":"markdown","id":"7844ae","input":"## Conjunto 3 de problemas\n\nEscriba el código en las celdas a continuación de cada enunciado. \n\nAcompañe la entrega de un script (.py) para cada problema.\n\nEl script debería ejecutarse desde consola recibiendo los parámetros adecuados:\n    \n```text\npython script.py arg1[, arg2, ..., argN]\n```","pos":0,"type":"cell"}
+{"id":0,"time":1629298378814,"type":"user"}
+{"last_load":1629298379113,"type":"file"}
