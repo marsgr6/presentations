@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>intro_to_python slides</title>
+<title>mlp_in_a_nutshell slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13202,121 +13202,230 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="CS101-Introducci&#243;n-a-la-Computaci&#243;n-en-Python">CS101 Introducci&#243;n a la Computaci&#243;n en Python<a class="anchor-link" href="#CS101-Introducci&#243;n-a-la-Computaci&#243;n-en-Python">&#182;</a></h1><p>Prof. Mario González, Ph.D. en Informática</p>
-<p><img src="http://investigacion.udla.edu.ec/wp-content/uploads/2018/07/Mario_Gonzalez.jpg" alt=""></p>
-<p><a href="http://investigacion.udla.edu.ec/udla_teams/mario-gonzalez/">Web page</a></p>
-<p><a href="https://scholar.google.com/citations?user=cmuZCwsAAAAJ&amp;hl=en">Google shcolar profile</a></p>
-
+<h1 id="Multi-layer-perceptron">Multi-layer perceptron<a class="anchor-link" href="#Multi-layer-perceptron">&#182;</a></h1><h3 id="in-a-nutshell">in a nutshell<a class="anchor-link" href="#in-a-nutshell">&#182;</a></h3>
 </div>
 </div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parte-1:-Conceptos-b&#225;sicos-de-Python">Parte 1: Conceptos b&#225;sicos de Python<a class="anchor-link" href="#Parte-1:-Conceptos-b&#225;sicos-de-Python">&#182;</a></h3><ul>
-<li><a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP01.pdf?viewer=raw">Introducción a Python</a> a Python 3 (<a href="https://anaconda.org/marsgr6/intro_python3/notebook">notebook</a>).</li>
-<li>Tipos de datos primitivos, variables, operadores y <a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP02.pdf?viewer=raw">estructuras de control</a> (<a href="https://anaconda.org/marsgr6/estructuras_de_control_python/notebook">notebook</a>).</li>
-<li>Tipos de datos estructurados: <a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP03.pdf?viewer=raw">strings y listas</a>;
-<a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP04.pdf?viewer=raw">tuplas, conjuntos y diccionarios</a>.</li>
-<li><a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP05.pdf?viewer=raw">Funciones y módulos</a> (<a href="https://anaconda.org/marsgr6/funciones_python/notebook">notebook</a>). </li>
-<li><a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP07.pdf?viewer=raw">Lectura y escritura de archivos</a>.</li>
-<li><a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP06.pdf?viewer=raw">POO</a> y <a href="https://marsgr6.github.io/presentations/ICP2021/slides/IP08.pdf?viewer=raw">Manejo de excepciones</a></li>
-</ul>
-<h3 id="Parte-2:-Computaci&#243;n-en-Python">Parte 2: Computaci&#243;n en Python<a class="anchor-link" href="#Parte-2:-Computaci&#243;n-en-Python">&#182;</a></h3><ul>
-<li><a href="https://anaconda.org/marsgr6/simulation_home/notebook">Computación numérica</a>: <a href="https://anaconda.org/marsgr6/numpy/notebook">Numpy</a>, <a href="https://anaconda.org/marsgr6/matplotlib/notebook">matplotlib</a>, scipy.</li>
-<li>Caminos aleatorios, Cadenas de Markov.</li>
-<li>Autómatas celulares, Algoritmos genéticos.</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Parte-1:-Conceptos-b&#225;sicos-de-Python">Parte 1: Conceptos b&#225;sicos de Python<a class="anchor-link" href="#Parte-1:-Conceptos-b&#225;sicos-de-Python">&#182;</a></h2><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/elements.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">Parte 2: Computaci&#243;n num&#233;rica en Python<a class="anchor-link" href="#Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">&#182;</a></h3><p><img src="https://opentextbc.ca/calculusv2openstax/wp-content/uploads/sites/287/2019/08/CNX_Calc_Figure_07_06_003.jpg" alt=""></p>
-<p><img src="https://miro.medium.com/max/4800/1*AifmyapRMdXL1lGxEUEY-g.png" alt=""></p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">Parte 2: Computaci&#243;n num&#233;rica en Python<a class="anchor-link" href="#Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">&#182;</a></h3><p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2F30918/MediaObjects/41586_1998_Article_BF30918_Fig1_HTML.gif" alt=""></p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">Parte 2: Computaci&#243;n num&#233;rica en Python<a class="anchor-link" href="#Parte-2:-Computaci&#243;n-num&#233;rica-en-Python">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/ga01.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/words_network.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Problemas">Problemas<a class="anchor-link" href="#Problemas">&#182;</a></h2><ul>
-<li><a href="https://github.com/marsgr6/presentations/blob/master/ICP2021/notebooks/problem_set_1.ipynb">Conjunto 1 de problemas</a>.</li>
-<li><a href="https://share.cocalc.com/share/1cc7dfb05c8a84d56bececafb1b00f84ee37c3aa/python_cs101/ICP2021/node2.html">Conjunto 2 de problemas</a>: morse y words.</li>
-<li><a href="https://github.com/marsgr6/presentations/blob/master/ICP2021/notebooks/problem_set_3.ipynb">Conjunto 3 de problemas</a> (numpy y pandas).</li>
-<li><a href="https://github.com/marsgr6/presentations/blob/master/ICP2021/notebooks/problem_set_4.ipynb">Conjunto 4 de problemas</a> (POO).</li>
-<li><a href="https://github.com/marsgr6/presentations/blob/master/ICP2021/notebooks/proyecto_final.ipynb">Proyecto</a>.</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Online-Jupyter-notebook-environments">Online Jupyter notebook environments<a class="anchor-link" href="#Online-Jupyter-notebook-environments">&#182;</a></h3><ul>
-<li><a href="https://colab.research.google.com/">Google colab</a></li>
-<li><a href="https://www.kaggle.com">Google Kaggle</a></li>
-<li><a href="https://cocalc.com">Cocalc</a></li>
-<li><a href="https://labs.cognitiveclass.ai/">IBM Skill Network Labs</a></li>
-<li><a href="https://deepnote.com/project/IPC2021-lZejtYHLSFeyhcw-K9_A0Q"><strong>Deepnote</strong></a></li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Parte-1:-Conceptos-b&#225;sicos-de-Python">Parte 1: Conceptos b&#225;sicos de Python<a class="anchor-link" href="#Parte-1:-Conceptos-b&#225;sicos-de-Python">&#182;</a></h3><p><a href="https://share.cocalc.com/share/1cc7dfb05c8a84d56bececafb1b00f84ee37c3aa/python_cs101/ICP2021/index.html?viewer=share">Índice de contenido</a></p>
-<h3 id="Parte-2:-Computaci&#243;n-en-Python">Parte 2: Computaci&#243;n en Python<a class="anchor-link" href="#Parte-2:-Computaci&#243;n-en-Python">&#182;</a></h3><ul>
-<li><a href="https://anaconda.org/marsgr6/simulation_home/notebook">Computación numérica</a>: <a href="https://anaconda.org/marsgr6/numpy/notebook">Numpy</a>, <a href="https://anaconda.org/marsgr6/matplotlib/notebook">matplotlib</a>, scipy.</li>
-<li><a href="https://anaconda.org/marsgr6/simulation_home/notebook">Simulación</a></li>
-<li>Caminos aleatorios, Cadenas de Markov.</li>
-<li>Autómatas celulares, Algoritmos genéticos.</li>
-</ul>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hopfield-vs-MLP">Hopfield vs MLP<a class="anchor-link" href="#Hopfield-vs-MLP">&#182;</a></h2><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/hopvsmlp.png" alt=""></p>
 <ul>
-<li><a href="https://anaconda.org/marsgr6/python3_course_content/notebook"><strong>Bonus track</strong></a></li>
+<li>Hopfield<ul>
+<li>Non supervised<ul>
+<li>Information retrieval</li>
+</ul>
+</li>
+<li>Learning and retrieval </li>
+</ul>
+</li>
+<li>MLP<ul>
+<li>Supervised<ul>
+<li>Classification</li>
+<li>Regression </li>
+</ul>
+</li>
+<li>Training and test</li>
+</ul>
+</li>
 </ul>
 
 </div>
 </div>
-</div></div></section></section>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-neural-units">The neural units<a class="anchor-link" href="#The-neural-units">&#182;</a></h2><p><img src="https://codesachin.files.wordpress.com/2015/12/actfn001.jpg?w=454&amp;h=209" alt=""></p>
+<p><img src="https://miro.medium.com/max/421/1*-VHew0NkVBK7RrzpHLZ_Hg.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-activiation-function">The activiation function<a class="anchor-link" href="#The-activiation-function">&#182;</a></h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/1280px-Logistic-curve.svg.png" alt=""></p>
+<ul>
+<li><a href="https://deepai.org/machine-learning-glossary-and-terms/sigmoid-function">https://deepai.org/machine-learning-glossary-and-terms/sigmoid-function</a></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Popular-activation-functions">Popular activation functions<a class="anchor-link" href="#Popular-activation-functions">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/act_fun.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-network-structure">The network structure<a class="anchor-link" href="#The-network-structure">&#182;</a></h2><p><img src="https://miro.medium.com/max/700/1*-IPQlOd46dlsutIbUq1Zcw.png" alt=""></p>
+<ul>
+<li><a href="https://becominghuman.ai/multi-layer-perceptron-mlp-models-on-real-world-banking-data-f6dd3d7e998f">https://becominghuman.ai/multi-layer-perceptron-mlp-models-on-real-world-banking-data-f6dd3d7e998f</a></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Feed-forward-the-information">Feed forward the information<a class="anchor-link" href="#Feed-forward-the-information">&#182;</a></h3><ul>
+<li>output of first layer</li>
+</ul>
+<p><img src="https://miro.medium.com/max/378/1*TNdVdZ3kilpVy59U3p5WEQ.png" alt=""></p>
+<ul>
+<li>nth layer output</li>
+</ul>
+<p><img src="https://miro.medium.com/max/303/1*SmeQvtMFOXa9oePc2WJK0A.png" alt=""></p>
+<ul>
+<li>measure error of the output with the target </li>
+</ul>
+<p><img src="https://s0.wp.com/latex.php?latex=E_%7Btotal%7D+%3D+%5Csum+%5Cfrac%7B1%7D%7B2%7D%28target+-+output%29%5E%7B2%7D&amp;bg=ffffff&amp;fg=404040&amp;s=0&amp;c=20201002" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-learning-algorithm-(backpropagation)">The learning algorithm (backpropagation)<a class="anchor-link" href="#The-learning-algorithm-(backpropagation)">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/backpropagation.png" alt=""></p>
+<ul>
+<li><a href="https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/">https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/</a></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Backpropagation-pseudocode">Backpropagation pseudocode<a class="anchor-link" href="#Backpropagation-pseudocode">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/bppseudocode.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-XOR-problem">The XOR problem<a class="anchor-link" href="#The-XOR-problem">&#182;</a></h2><p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--O_kCr-s2--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lkli02223oqhlac1jetz.png" alt=""></p>
+<p><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--6OpbLFPq--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://cdn-images-1.medium.com/max/2000/0%2ALYlt6CZJHOJkNRHJ." alt=""></p>
+<ul>
+<li><a href="https://dev.to/jbahire/demystifying-the-xor-problem-1blk">https://dev.to/jbahire/demystifying-the-xor-problem-1blk</a></li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="c1"># Parameters, neurons: input, hidden, output</span>
+<span class="n">N_i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">N_h</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">N_o</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># XOR input</span>
+<span class="n">r_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s1">&#39;0 1 0 1; 0 0 1 1&#39;</span><span class="p">)</span>
+
+<span class="c1"># XOR output</span>
+<span class="n">r_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s1">&#39;0 1 1 0&#39;</span><span class="p">)</span>
+
+<span class="n">r_i</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r_d</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(matrix([[0, 0],
+         [1, 0],
+         [0, 1],
+         [1, 1]]),
+ matrix([[0],
+         [1],
+         [1],
+         [0]]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># Initialize randomly the weights</span>
+<span class="c1"># Hidden layer</span>
+<span class="n">w_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N_h</span><span class="p">,</span><span class="n">N_i</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="c1"># Output layer</span>
+<span class="n">w_o</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N_o</span><span class="p">,</span><span class="n">N_h</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">training_steps</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training_steps</span><span class="p">):</span>
+    <span class="c1"># Select training pattern randomly</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="c1"># Feed-forward the input to hidden layer</span>
+    <span class="n">r_h</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">w_h</span><span class="o">*</span><span class="n">r_i</span><span class="p">[:,</span><span class="n">i</span><span class="p">]))</span>
+    <span class="c1"># Feed-forward the input to the output layer</span>
+    <span class="n">r_o</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">w_o</span><span class="o">*</span><span class="n">r_h</span><span class="p">))</span>
+    <span class="c1"># Calculate the network error</span>
+    <span class="n">d_o</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_o</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">r_o</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">r_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">r_o</span><span class="p">)</span>
+    <span class="c1"># Calculate the responsability of the hidden network in the error</span>
+    <span class="n">d_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">r_h</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">r_h</span><span class="p">)),</span> <span class="p">(</span><span class="n">w_o</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">d_o</span><span class="p">))</span>
+    <span class="c1"># Update weights</span>
+    <span class="n">w_o</span> <span class="o">=</span> <span class="n">w_o</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="p">(</span><span class="n">r_h</span><span class="o">*</span><span class="n">d_o</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">w_h</span> <span class="o">=</span> <span class="n">w_h</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="p">(</span><span class="n">r_i</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">d_h</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="c1"># Test all patterns</span>
+    <span class="n">r_o_test</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">w_o</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">w_h</span><span class="o">*</span><span class="n">r_i</span><span class="p">)))))</span>
+    <span class="n">mse</span> <span class="o">+=</span> <span class="p">[</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">r_d</span><span class="p">,</span> <span class="n">r_o_test</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Sources-and-resources">Sources and resources<a class="anchor-link" href="#Sources-and-resources">&#182;</a></h3><ul>
+<li><a href="https://aulasvirtuales.udla.edu.ec/udlapresencial/pluginfile.php/1622341/mod_resource/content/8/IA13.pdf">https://aulasvirtuales.udla.edu.ec/udlapresencial/pluginfile.php/1622341/mod_resource/content/8/IA13.pdf</a></li>
+<li><a href="https://anaconda.org/marsgr6/mlp/notebook">https://anaconda.org/marsgr6/mlp/notebook</a></li>
+<li><a href="https://paginas.fe.up.pt/~ec/files_1112/week_10_NN_and_SVM_JMM.pdf">https://paginas.fe.up.pt/~ec/files_1112/week_10_NN_and_SVM_JMM.pdf</a></li>
+<li><a href="https://heartbeat.fritz.ai/backpropagation-broken-down-4c52bdcb4bb">https://heartbeat.fritz.ai/backpropagation-broken-down-4c52bdcb4bb</a></li>
+<li><a href="https://towardsdatascience.com/an-introduction-to-gradient-descent-and-backpropagation-81648bdb19b2">https://towardsdatascience.com/an-introduction-to-gradient-descent-and-backpropagation-81648bdb19b2</a></li>
+<li><a href="https://codesachin.wordpress.com/2015/12/06/backpropagation-for-dummies/">https://codesachin.wordpress.com/2015/12/06/backpropagation-for-dummies/</a></li>
+<li><a href="https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/">https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/</a></li>
+</ul>
+
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 
