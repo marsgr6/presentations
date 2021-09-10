@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2019.2 (Released June 5, 2019) -->
+<HTML lang="EN">
+<HEAD>
+<TITLE>Evaluación autónoma I</TITLE>
+<META NAME="description" CONTENT="Evaluación autónoma I">
+<META NAME="keywords" CONTENT="ICP2021">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2019.2">
+
+<LINK REL="STYLESHEET" HREF="ICP2021.css">
+
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Siguiente:</B> <A
+ HREF="node15.html">Ejemplo del uso de</A>
+<B> Subir:</B> <A
+ HREF="node13.html">Evaluaciones autónomas</A>
+<B> Anterior:</B> <A
+ HREF="node13.html">Evaluaciones autónomas</A>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A ID="SECTION00024100000000000000">
+Evaluación autónoma I</A>
+</H3>
+
+<P>
+
+<OL>
+<LI>Escribir un programa que lea un entero <SPAN  CLASS="textbf">N</SPAN> desde el teclado y luego llame a una función definida por el usuario para calcular y mostrar la suma de los números de <SPAN  CLASS="textbf">N</SPAN> a <SPAN  CLASS="textbf">(2 * N)</SPAN> si <SPAN  CLASS="textbf">N</SPAN> es no negativo. Si <SPAN  CLASS="textbf">N</SPAN> es un número negativo, entonces es la suma de los números a partir de <SPAN  CLASS="textbf">(2 * N)</SPAN> a <SPAN  CLASS="textbf">N</SPAN>. Los puntos de partida y final deben estar incluidos en la suma (0.5 punto).
+
+<P>
+
+<UL>
+<LI>Debe tener solamente 1 bucle en la función para calcular la suma (0.5 punto). 
+</LI>
+<LI>Escriba una función que utilice el signo de N para 
+devolver el punto de inicio y el punto final (1 puntos).
+</LI>
+<LI>Ejemplos:
+<BR><SPAN  CLASS="texttt">
+De un valor entero (positivo o negativo) 5
+<BR>
+Suma: 45
+<BR>
+<BR>
+De un valor entero (positivo o negativo) -4
+<BR>
+Suma: -30
+<BR></SPAN>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Escribir un programa que lea del teclado una fecha en el siguiente formato DDMMAAAA. 
+El programa llama una función que imprime la fecha en el formato &lt;día&gt; de &lt;NombreMes&gt;, &lt;año&gt; (0.5 puntos). 
+Ejecución de ejemplo:
+<BR><SPAN  CLASS="texttt">Ingrese Fecha: 25122015
+<BR>
+25 de diciembre, 2015.
+<BR></SPAN>
+
+<UL>
+<LI>En la entrada siempre se dan el mes y el día con dos dígitos, incluyendo ceros
+iniciales. 
+Así que el 20 de mayo, 2000 se introducirá como 20052000 y el 3 de diciembre,
+2000 se introducirá como 03122000.
+</LI>
+<LI>Escriba una función que tome la fecha en el formato sugerido y devuelva la salida 
+correspondiente, llamando la función sugerida en el punto siguiente para el mes (1 puntos). 
+</LI>
+<LI>Escriba una función que utilice un diccionario y devuelva el mes correspondiente (0.5 punto).
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Escriba un programa que pida al usuario dos enteros. 
+Si el usuario introduce dos enteros (X,Y) escriba una función que determine si el segundo número (Y) es un múltiplo del primero (X). 
+Si es así, se imprime un mensaje <SPAN  CLASS="textbf">&lt;X&gt; es múltiplo de &lt;Y&gt;</SPAN>. 
+De lo contrario, se imprime un mensaje diciendo que el segundo no es un múltiplo del primero, 
+y le da al usuario la oportunidad de introducir los números de nuevo. 
+Esto se repite hasta que el usuario introduce dos números donde el segundo es un múltiplo del primero, 
+o solicita salir. 
+Las solicitudes de los usuarios para terminar inmediante la introducción de números es <SPAN  CLASS="textbf">"s" o "S"</SPAN> en lugar de cualquiera de los dos números, 
+y luego el algoritmo termina. Asuma que el usuario introduce ya sea <SPAN  CLASS="textbf">"s" o "S"</SPAN> o dos enteros, nada más (2 puntos).
+
+<UL>
+<LI>Escriba una función que compruebe si se ha introducido una <SPAN  CLASS="textbf">"s" o "S"</SPAN> (1 punto).
+</LI>
+<LI>Escriba una función que compruebe si un número es múltiplo de otro (1 punto).
+</LI>
+<LI>Ejemplo:
+<BR><SPAN  CLASS="texttt">
+Introduzca el primer valor: 4
+<BR>
+Introduzca el segundo valor: 3
+<BR>
+3 no es multiplo de 4, intentelo de nuevo
+<BR>
+Introduzca el primer valor: 2
+<BR>
+Introduzca el segundo valor: 4
+<BR>
+4 es multiplo de 2
+<BR></SPAN>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Escriba un programa que implemente el siguiente juego (2 puntos):
+
+<UL>
+<LI>El usuario introduce por teclado un número entre 1 y 100.
+</LI>
+<LI>Lo compara con un número almacenado internamente y retroalimenta
+al usuario con la pista si el numero es muy alto o muy bajo.
+</LI>
+<LI>Repite el proceso hasta que el usuario adivina el número o 
+introduce una <SPAN  CLASS="textbf">"s" o "S"</SPAN>.
+</LI>
+<LI>Ejemlo de ejecución:
+<BR><SPAN  CLASS="texttt">
+Ingrese un número entre 1 y 100: 62
+<BR>
+Muy alto. Pruebe de nuevo: 32
+<BR>
+Muy bajo. Pruebe de nuevo: 51
+<BR>
+Muy bajo. Pruebe de nuevo: 56
+<BR>
+Ha adivinado
+<BR></SPAN>
+</LI>
+<LI>Escriba una función que compruebe si se ha introducido una <SPAN  CLASS="textbf">"s" o "S"</SPAN> (1 punto).
+</LI>
+<LI>Escriba una función que compruebe si el valor introducido es mayor, menor o igual que el de 
+referencia (1 punto).
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Definir un función <SPAN  CLASS="texttt">histograma(L,d)</SPAN> que tome una lista de enteros (L) y dirección (d) e imprima un histograma en la pantalla (1 punto).
+
+<UL>
+<LI>La función <SPAN  CLASS="texttt">histograma(L,d)</SPAN> debe comprobar si el valor de <SPAN  CLASS="texttt">d</SPAN>
+corresponde a <SPAN  CLASS="textbf">"H" o "h"</SPAN>, <SPAN  CLASS="textbf">"V" o "v"</SPAN> y llamar la función correspondiente
+de los puntos siguientes. En caso contrario imprimir opción no válida.
+</LI>
+<LI>Escriba una función que imprima un histograma en dirección horizontal (1 punto).
+</LI>
+<LI>Escriba una función que imprima un histograma en dirección vertical (1 punto).
+</LI>
+<LI>Escriba una función principal que pida al usuario una entrada por teclado
+de una lista (en formato python) y la dirección (H o V).
+Por ejemplo:
+<BR></LI>
+</UL> 
+<SPAN  CLASS="texttt">
+De lista de enteros positivos (Ej.: [4,5,7,2]) [4,5,7,2]
+<BR>
+De una posicion (V o H): V
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;*  
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;*  
+<BR>&nbsp;&nbsp;*&nbsp;*  
+<BR>*&nbsp;*&nbsp;*  
+<BR>*&nbsp;* *  
+<BR>*&nbsp;*&nbsp;*&nbsp;*
+<BR>*&nbsp;*&nbsp;*&nbsp;*
+<BR>
+<BR>
+De lista de enteros positivos (Ej.: [4,5,7,2]) [4,5,7,2]
+<BR>
+De una posicion (V o H): h
+<BR>****
+<BR>*****
+<BR>*******
+<BR>**
+<BR>
+<BR>
+De lista de enteros positivos (Ej.: [4,5,7,2]) [4,5,7,2]
+<BR>
+De una posicion (V o H): a
+<BR>
+Posicion no valida
+<BR></SPAN>
+</LI>
+</OL>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A>   
+<BR>
+<B> Siguiente:</B> <A
+ HREF="node15.html">Ejemplo del uso de</A>
+<B> Subir:</B> <A
+ HREF="node13.html">Evaluaciones autónomas</A>
+<B> Anterior:</B> <A
+ HREF="node13.html">Evaluaciones autónomas</A></DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>
