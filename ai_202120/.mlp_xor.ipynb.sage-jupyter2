@@ -1,0 +1,6 @@
+{"backend_state":"init","connection_file":"/tmp/xdg-runtime-user/jupyter/kernel-cd90fe95-75a5-4590-93df-427657d3d5fa.json","kernel":"python3","kernel_error":"","kernel_state":"idle","kernel_usage":{"cpu":0,"memory":0},"metadata":{"language_info":{"codemirror_mode":{"name":"ipython","version":3},"file_extension":".py","mimetype":"text/x-python","name":"python","nbconvert_exporter":"python","pygments_lexer":"ipython3","version":"3.6.9"}},"trust":true,"type":"settings"}
+{"cell_type":"code","exec_count":0,"id":"697969","input":"","pos":2,"type":"cell"}
+{"cell_type":"code","exec_count":2,"id":"600715","input":"import numpy as np\nimport matplotlib.pyplot as plt","pos":0,"type":"cell"}
+{"cell_type":"code","exec_count":3,"id":"4be910","input":"from sklearn.metrics import mean_squared_error\n\n# Parameters, neurons: input, hidden, output\nN_i = 2; N_h = 4; N_o = 1\n\n# XOR input\nr_i = np.matrix('0 1 0 1; 0 0 1 1')\n\n# XOR output\nr_d = np.matrix('0 1 1 0')","pos":1,"type":"cell"}
+{"id":0,"time":1623082226867,"type":"user"}
+{"last_load":1623082226914,"type":"file"}
