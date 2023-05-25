@@ -23,13 +23,8 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 </script>
 
 <style type="text/css">
-    pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+    .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -14495,9 +14490,6 @@ a.anchor-link {
 .reveal {
   font-size: 160%;
 }
-.reveal table {
-  font-size: var(--jp-ui-font-size1);
-}
 .reveal pre {
   width: inherit;
   padding: 0.4em;
@@ -14541,23 +14533,6 @@ div.jp-OutputPrompt {
   margin: 5px 5px 0 0;
 }
 
-.reveal div.highlight {
-  margin: 0;
-}
-
-.reveal div.highlight > pre {
-  margin: 0;
-  width: 100%;
-  font-size: var(--jp-code-font-size);
-}
-
-.reveal div.jp-OutputArea-output > pre {
-  margin: 0;
-  width: 90%;
-  font-size: var(--jp-code-font-size);
-  box-shadow: none;
-}
-
 /* Reveal navigation controls */
 
 .reveal .controls .navigate-left,
@@ -14598,14 +14573,17 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar {
+::-webkit-scrollbar
+{
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar * {
-  background: transparent;
+::-webkit-scrollbar *
+{
+  background:transparent;
 }
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb
+{
   background: #727272 !important;
 }
 </style>
@@ -14632,12 +14610,12 @@ div.jp-OutputPrompt {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: {
-                    automatic: true
+                    linebreaks: { 
+                    automatic: true 
                     }
                 }
             });
-
+        
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14651,7 +14629,7 @@ div.jp-OutputPrompt {
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
 <div class="reveal">
-<div class="slides"><section ><section >
+<div class="slides"><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14659,7 +14637,7 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Decisiones-basadas-en-datos">Decisiones basadas en datos<a class="anchor-link" href="#Decisiones-basadas-en-datos">&#182;</a></h1><h3 id="Maestr%C3%ADa-en-Business-Analytics">Maestr&#237;a en Business Analytics<a class="anchor-link" href="#Maestr%C3%ADa-en-Business-Analytics">&#182;</a></h3><p>Prof. Mario González, Ph.D. en Informática</p>
-<img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=cmuZCwsAAAAJ&citpid=7" alt="Mario Gonzalez" width="200" height="200">
+<p><img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=cmuZCwsAAAAJ&citpid=7" alt="Mario Gonzalez" width="200" height="200"></p>
 <ul>
 <li><a href="http://investigacion.udla.edu.ec/udla_teams/mario-gonzalez/">Web page</a></li>
 <li><a href="https://scholar.google.co.uk/citations?user=cmuZCwsAAAAJ&amp;hl=en">Google scholar</a></li>
@@ -14668,7 +14646,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14702,7 +14680,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14711,8 +14689,8 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Tu-turno">Tu turno<a class="anchor-link" href="#Tu-turno">&#182;</a></h3><ul>
 <li>¿Cómo te llamas?</li>
-<li>¿Cuál es tu experiencia (&quot;background&quot;)?<ul>
-<li>Ejemplo: carrera académica, experiencia laboral, etc.</li>
+<li>¿Cuál es tu experiencia ("background")? <ul>
+<li>Ejemplo: carrera académica, experiencia laboral, etc. </li>
 </ul>
 </li>
 <li>¿Has trabajado en análisis de datos?<ul>
@@ -14728,7 +14706,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14748,7 +14726,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14761,7 +14739,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14780,7 +14758,7 @@ div.jp-OutputPrompt {
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14797,7 +14775,7 @@ La optimización en toda la organización puede abarcar:</p>
 <li>Evaluar y predecir el rendimiento de posibles inversiones</li>
 <li>Identificar la demanda de un producto o servicio</li>
 <li>Programar fechas de lanzamiento para nuevos productos</li>
-<li>Evaluar las ventas de productos por ubicación para satisfacer demandas</li>
+<li>Evaluar las ventas de productos por ubicación para satisfacer demandas </li>
 <li>Crear rutas logísticas óptimas</li>
 <li>Hacer recomendaciones de productos basadas en hábitos de cosumo</li>
 <li>Recopilar datos de vehículos y equipos para mejorar el rendimiento futuro</li>
@@ -14806,14 +14784,14 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">Business Intelligence vs. Data Analytics vs. Data Science<a class="anchor-link" href="#Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#182;</a></h3><p>El proceso de análisis de datos implica:</p>
+<h3 id="%C2%A0Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#160;Business Intelligence vs. Data Analytics vs. Data Science<a class="anchor-link" href="#%C2%A0Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#182;</a></h3><p>El proceso de análisis de datos implica:</p>
 <ul>
 <li>Agregar los datos, ya que puede haber más de una fuente estructurada y no estructurada involucrada</li>
 <li>Minería de datos, es decir, clasificar los datos e identificar tendencias</li>
@@ -14824,14 +14802,14 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">Business Intelligence vs. Data Analytics vs. Data Science<a class="anchor-link" href="#Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#182;</a></h3><ul>
+<h3 id="%C2%A0Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#160;Business Intelligence vs. Data Analytics vs. Data Science<a class="anchor-link" href="#%C2%A0Business-Intelligence-vs.-Data-Analytics-vs.-Data-Science">&#182;</a></h3><ul>
 <li><p>La tarea de la agregación recae frecuentemente en profesionales de <strong>inteligencia de negocios</strong>, que examinan una multitud de fuentes de datos, los limpian y los preparan para su análisis. Estos dedican su tiempo a monitorear la cantidad y variedad de datos que llegan y los organizan en informes o paneles de control.</p>
 </li>
 <li><p>El profesional de <strong>análisis de datos</strong>, a veces llamado analista, aborda los datos desde un nivel superior, examinándolos en busca de patrones, haciéndolos utilizables, creando modelos a partir de ellos y encontrando patrones en las que estos números y cadenas de texto puedan mejorar los procesos o hacer proyecciones.</p>
@@ -14843,19 +14821,19 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Data-science">Data science<a class="anchor-link" href="#Data-science">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:640/0*POjH5vv_7t8s8loG" alt="" /></p>
+<h3 id="Data-science">Data science<a class="anchor-link" href="#Data-science">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:640/0*POjH5vv_7t8s8loG" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14871,13 +14849,13 @@ La optimización en toda la organización puede abarcar:</p>
 <li>Analista de Investigación</li>
 <li>Gerente de Servicios u Operaciones de Manufactura</li>
 <li>Consultores en Inteligencia de Negocios y Gestión del Rendimiento</li>
-<li>Analista de Optimización de Precios</li>
+<li>Analista de Optimización de Precios </li>
 </ul>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14887,12 +14865,12 @@ La optimización en toda la organización puede abarcar:</p>
 <h3 id="Fuentes,-procesamiento-y-usuarios-de-los-datos">Fuentes, procesamiento y usuarios de los datos<a class="anchor-link" href="#Fuentes,-procesamiento-y-usuarios-de-los-datos">&#182;</a></h3><ul>
 <li>Los datos provienen de fuentes variadas y deben ser procesados para cada usuario</li>
 </ul>
-<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*TCrrLDCmCpetUUsaFz8wWA.png" alt="" /></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*TCrrLDCmCpetUUsaFz8wWA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14907,12 +14885,12 @@ La optimización en toda la organización puede abarcar:</p>
 <li><p>Deben tener un buen conocimiento de programación, un sólido conocimiento de arquitecturas de sistemas y tecnología, y una comprensión profunda de bases de datos relacionales y almacenes de datos no relacionales.</p>
 </li>
 </ul>
-<p><img src="https://miro.medium.com/v2/resize:fit:420/format:webp/1*D5zhbl5qs3LcnpEEK2gpWg.png" alt="" /></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:420/format:webp/1*D5zhbl5qs3LcnpEEK2gpWg.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14927,86 +14905,86 @@ La optimización en toda la organización puede abarcar:</p>
 <li><p>También visualizan los datos para interpretar y presentar los hallazgos del análisis de datos.</p>
 </li>
 </ul>
-<p><img src="https://miro.medium.com/v2/resize:fit:420/format:webp/1*jxsuvvn5OSNtdulFO8TF5w.png" alt="" /></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:420/format:webp/1*jxsuvvn5OSNtdulFO8TF5w.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Cient%C3%ADfico-de-datos">Cient&#237;fico de datos<a class="anchor-link" href="#Cient%C3%ADfico-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*lG-lvxQzCU8Ynep6RWl0JA.png" alt="" /></p>
+<h3 id="Cient%C3%ADfico-de-datos">Cient&#237;fico de datos<a class="anchor-link" href="#Cient%C3%ADfico-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*lG-lvxQzCU8Ynep6RWl0JA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Analista-de-negocios-y-de-inteligencia-de-negocios">Analista de negocios y de inteligencia de negocios<a class="anchor-link" href="#Analista-de-negocios-y-de-inteligencia-de-negocios">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*BqiJWlzmtcnQp3O9Ekg0wA.png" alt="" /></p>
+<h3 id="Analista-de-negocios-y-de-inteligencia-de-negocios">Analista de negocios y de inteligencia de negocios<a class="anchor-link" href="#Analista-de-negocios-y-de-inteligencia-de-negocios">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*BqiJWlzmtcnQp3O9Ekg0wA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Qu%C3%A9-es-el-an%C3%A1lisis-de-datos">Qu&#233; es el an&#225;lisis de datos<a class="anchor-link" href="#Qu%C3%A9-es-el-an%C3%A1lisis-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*2aXzKjF3E3DniR1vgh-p-Q.png" alt="" /></p>
-<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*hpHVjg4uXmQkjlRtdwL6LA.png" alt="" /></p>
+<h3 id="Qu%C3%A9-es-el-an%C3%A1lisis-de-datos">Qu&#233; es el an&#225;lisis de datos<a class="anchor-link" href="#Qu%C3%A9-es-el-an%C3%A1lisis-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*2aXzKjF3E3DniR1vgh-p-Q.png" alt=""></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*hpHVjg4uXmQkjlRtdwL6LA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Tipos-de-anal%C3%ADtica">Tipos de anal&#237;tica<a class="anchor-link" href="#Tipos-de-anal%C3%ADtica">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/analytics.png"  width="480">
+<h3 id="Tipos-de-anal%C3%ADtica">Tipos de anal&#237;tica<a class="anchor-link" href="#Tipos-de-anal%C3%ADtica">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/analytics.png"  width="480"></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Pasos-clave-en-el-proceso-de-an%C3%A1lisis-de-datos">Pasos clave en el proceso de an&#225;lisis de datos<a class="anchor-link" href="#Pasos-clave-en-el-proceso-de-an%C3%A1lisis-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*RAZrAcOvcEsseIopDVE8oA.png" alt="" />
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*zJ6zvWm4mdT4Hgkk2aNMEA.png" alt="" /></p>
+<h3 id="Pasos-clave-en-el-proceso-de-an%C3%A1lisis-de-datos">Pasos clave en el proceso de an&#225;lisis de datos<a class="anchor-link" href="#Pasos-clave-en-el-proceso-de-an%C3%A1lisis-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*RAZrAcOvcEsseIopDVE8oA.png" alt="">
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*zJ6zvWm4mdT4Hgkk2aNMEA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Habilidades-requeridas-para-el-data-analysis">Habilidades requeridas para el data analysis<a class="anchor-link" href="#Habilidades-requeridas-para-el-data-analysis">&#182;</a></h3><p><img src="https://www.sia-partners.com/sites/default/files/styles/freeratiomedia_1200/public/image/picture/2021-05/data%20science1.png?itok=UTIfcdat" alt="" /></p>
+<h3 id="Habilidades-requeridas-para-el-data-analysis">Habilidades requeridas para el data analysis<a class="anchor-link" href="#Habilidades-requeridas-para-el-data-analysis">&#182;</a></h3><p><img src="https://www.sia-partners.com/sites/default/files/styles/freeratiomedia_1200/public/image/picture/2021-05/data%20science1.png?itok=UTIfcdat" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15025,7 +15003,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15044,7 +15022,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15061,7 +15039,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15071,36 +15049,36 @@ La optimización en toda la organización puede abarcar:</p>
 <h3 id="Proceso-del-data-analysis">Proceso del data analysis<a class="anchor-link" href="#Proceso-del-data-analysis">&#182;</a></h3><ul>
 <li>Raw data: archivos csv, API requests, web scrapping, databases</li>
 </ul>
-<p><img src="https://miro.medium.com/v2/resize:fit:640/0*UaMaxFdma0Gcc-rY" alt="" /></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:640/0*UaMaxFdma0Gcc-rY" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Exploratory-Data-Analysis-(EDA)">Exploratory Data Analysis (EDA)<a class="anchor-link" href="#Exploratory-Data-Analysis-(EDA)">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/exploredata.png"  width="580">
+<h3 id="Exploratory-Data-Analysis-(EDA)">Exploratory Data Analysis (EDA)<a class="anchor-link" href="#Exploratory-Data-Analysis-(EDA)">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/exploredata.png"  width="580"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Augement-Data">Augement Data<a class="anchor-link" href="#Augement-Data">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/augmentdata.png" width="580">
+<h3 id="Augement-Data">Augement Data<a class="anchor-link" href="#Augement-Data">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/augmentdata.png" width="580"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15111,12 +15089,12 @@ La optimización en toda la organización puede abarcar:</p>
 <li>Entender mejor el problema (pregunta) de negocio</li>
 <li>Usando datos <strong>históricos</strong>, Responde a la pregunta <strong>¿Qué pasó?</strong></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/problem.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/problem.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15124,14 +15102,14 @@ La optimización en toda la organización puede abarcar:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Anal%C3%ADtica-descriptiva-(durante-el-modelado)">Anal&#237;tica descriptiva (durante el modelado)<a class="anchor-link" href="#Anal%C3%ADtica-descriptiva-(durante-el-modelado)">&#182;</a></h3><ul>
-<li>Un modelo de optimización (o de simulación) debe construirse a partir de datos históricos, y estos deben ser descritos.</li>
+<li>Un modelo de optimización (o de simulación) debe construirse a partir de datos históricos, y estos deben ser descritos. </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/optimization.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/optimization.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15139,14 +15117,14 @@ La optimización en toda la organización puede abarcar:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Anal%C3%ADtica-descriptiva-(despu%C3%A9s-del-modelado)">Anal&#237;tica descriptiva (despu&#233;s del modelado)<a class="anchor-link" href="#Anal%C3%ADtica-descriptiva-(despu%C3%A9s-del-modelado)">&#182;</a></h3><ul>
-<li>Una vez construido, la analítica descriptiva nos ayuda a entender los resultados del modelo.</li>
+<li>Una vez construido, la analítica descriptiva nos ayuda a entender los resultados del modelo. </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/understand.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/understand.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15157,31 +15135,31 @@ La optimización en toda la organización puede abarcar:</p>
 <li>El análisis descriptivo es el tipo de análisis más básico y común que utilizan las empresas.</li>
 <li>El análisis descriptivo se utiliza para producir informes, KPI y métricas comerciales que permiten a las empresas realizar un seguimiento del rendimiento y otras tendencias.</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/dashboard.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/dashboard.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Miner%C3%ADa-de-datos">Miner&#237;a de datos<a class="anchor-link" href="#Miner%C3%ADa-de-datos">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/pred_pres.png" width="780">
+<h3 id="Miner%C3%ADa-de-datos">Miner&#237;a de datos<a class="anchor-link" href="#Miner%C3%ADa-de-datos">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/pred_pres.png" width="780"></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Proceso-de-la-ciencia-de-datos">Proceso de la ciencia de datos<a class="anchor-link" href="#Proceso-de-la-ciencia-de-datos">&#182;</a></h3><img src="https://img.genial.ly/5cfaa26a62ea587e31d3d6ad/568b1809-5553-423e-af57-03b24ef04cb7.png" alt="Me" width="360">
+<h3 id="Proceso-de-la-ciencia-de-datos">Proceso de la ciencia de datos<a class="anchor-link" href="#Proceso-de-la-ciencia-de-datos">&#182;</a></h3><p><img src="https://img.genial.ly/5cfaa26a62ea587e31d3d6ad/568b1809-5553-423e-af57-03b24ef04cb7.png" alt="Me" width="360"></p>
 <ul>
 <li>Vea:<ul>
 <li><a href="https://view.genial.ly/63e403ae69d059001b2af142/presentation-el-proceso-de-la-ciencia-de-datos">Proceso de la ciencia de datos</a></li>
@@ -15193,43 +15171,43 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*WAGxoWlVIY9I8RLK5ptt1Q.png" alt="" /></p>
+<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*WAGxoWlVIY9I8RLK5ptt1Q.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*eUNzyrx-Ti2USNiMRb9mEA.png" alt="" /></p>
+<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*eUNzyrx-Ti2USNiMRb9mEA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*I2ik2qea4W-0_tAhSCZ_fA.png" alt="" /></p>
+<h3 id="Tipos-de-datos">Tipos de datos<a class="anchor-link" href="#Tipos-de-datos">&#182;</a></h3><p><img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*I2ik2qea4W-0_tAhSCZ_fA.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15242,12 +15220,12 @@ La optimización en toda la organización puede abarcar:</p>
 <li><p>El <strong>Big data analytics</strong> ayuda a las organizaciones a tomar mejores decisiones.</p>
 </li>
 </ul>
-<p><img src="https://editor.analyticsvidhya.com/uploads/937771_OYalBcMGoyYc5lN0ywSXiQ.png" alt="" /></p>
+<p><img src="https://editor.analyticsvidhya.com/uploads/937771_OYalBcMGoyYc5lN0ywSXiQ.png" alt=""></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15255,10 +15233,8 @@ La optimización en toda la organización puede abarcar:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="De-d%C3%B3nde-se-origina-el-Big-Data">De d&#243;nde se origina el Big Data<a class="anchor-link" href="#De-d%C3%B3nde-se-origina-el-Big-Data">&#182;</a></h3><ul>
-<li><p>Antes unas pocas compañías generaban información, y todos los demás la consumían: periódicos, televisoras.</p>
-</li>
-<li><p>Ahora todos somos generadores y consumidores de información: youtubers, tiktok, wikipedia.</p>
-</li>
+<li>Antes unas pocas compañías generaban información, y todos los demás la consumían: periódicos, televisoras.</li>
+<li>Ahora todos somos generadores y consumidores de información: youtubers, tiktok, wikipedia.</li>
 <li><p>Las máquinas también generan y consumen información: cámaras, satélites, Internet de las cosas IoT, chatGPT.</p>
 </li>
 <li><p>La importancia del análisis de big data analytics ha crecido junto con la variedad de datos no estructurados que pueden ser extraídos para obtener información: contenido de redes sociales, textos, datos de clics y la multitud de sensores provenientes del Internet de las cosas.</p>
@@ -15268,7 +15244,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15286,19 +15262,19 @@ La optimización en toda la organización puede abarcar:</p>
 <li>Usuarios hacen una valoración del servicio, suben fotos, etc.</li>
 <li><strong>Las máquinas generan, consumen y organizan la información</strong></li>
 </ul>
-<img src="https://res.cloudinary.com/flippercode/image/upload/v1517567693/wp-google-maps-gold-screenshots-version5/traffic-layer-display.png" alt="Me" width="300">
+<p><img src="https://res.cloudinary.com/flippercode/image/upload/v1517567693/wp-google-maps-gold-screenshots-version5/traffic-layer-display.png" alt="Me" width="300"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Social-media-data">Social media data<a class="anchor-link" href="#Social-media-data">&#182;</a></h3><ul>
+<h3 id="%C2%A0Social-media-data">&#160;Social media data<a class="anchor-link" href="#%C2%A0Social-media-data">&#182;</a></h3><ul>
 <li>Rastrean la ubicación, quiénes somos, donde estamos, donde vamos, con quién estamos.</li>
 <li>Facebook/Google login.</li>
 <li>Hábitos de compras, historial de búsquedas, etc.</li>
@@ -15306,60 +15282,60 @@ La optimización en toda la organización puede abarcar:</p>
 <li>Información financiera, ahorros, tarjetas de crédito, préstamos, etc.</li>
 <li>Información de salud, hábitos alimenticios y de ejercicio, medicamentos, etc.</li>
 </ul>
-<img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/16-reasons-why-social-media-is-important-to-your-company-616d3200e6dc6-sej.png" alt="Me" width="400">
+<p><img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/16-reasons-why-social-media-is-important-to-your-company-616d3200e6dc6-sej.png" alt="Me" width="400"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="IoT-y-ciudades-inteligentes">IoT y ciudades inteligentes<a class="anchor-link" href="#IoT-y-ciudades-inteligentes">&#182;</a></h3><img src="https://aliga.sk/wp-content/uploads/2018/06/smart_cities_infrastructure_iot_wide.png" alt="Me" width="680">
+<h3 id="IoT-y-ciudades-inteligentes">IoT y ciudades inteligentes<a class="anchor-link" href="#IoT-y-ciudades-inteligentes">&#182;</a></h3><p><img src="https://aliga.sk/wp-content/uploads/2018/06/smart_cities_infrastructure_iot_wide.png" alt="Me" width="680"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Inform%C3%A1tica-urbana-(contaminaci%C3%B3n-de-aire)">Inform&#225;tica urbana (contaminaci&#243;n de aire)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(contaminaci%C3%B3n-de-aire)">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/figHM.png" alt="Me" width="480">
+<h3 id="Inform%C3%A1tica-urbana-(contaminaci%C3%B3n-de-aire)">Inform&#225;tica urbana (contaminaci&#243;n de aire)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(contaminaci%C3%B3n-de-aire)">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/figHM.png" alt="Me" width="480"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Inform%C3%A1tica-urbana-(eventos-urbanos-social-media)">Inform&#225;tica urbana (eventos urbanos social media)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(eventos-urbanos-social-media)">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/mapq.png" alt="Me" width="480">
+<h3 id="Inform%C3%A1tica-urbana-(eventos-urbanos-social-media)">Inform&#225;tica urbana (eventos urbanos social media)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(eventos-urbanos-social-media)">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/mapq.png" alt="Me" width="480"></p>
 
 </div>
 </div>
 </div>
-</div></section><section >
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Inform%C3%A1tica-urbana-(an%C3%A1lisis-de-tr%C3%A1fico)">Inform&#225;tica urbana (an&#225;lisis de tr&#225;fico)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(an%C3%A1lisis-de-tr%C3%A1fico)">&#182;</a></h3><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/grid_cluster_traffic.png" alt="Me" width="680">
+<h3 id="Inform%C3%A1tica-urbana-(an%C3%A1lisis-de-tr%C3%A1fico)">Inform&#225;tica urbana (an&#225;lisis de tr&#225;fico)<a class="anchor-link" href="#Inform%C3%A1tica-urbana-(an%C3%A1lisis-de-tr%C3%A1fico)">&#182;</a></h3><p><img src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/grid_cluster_traffic.png" alt="Me" width="680"></p>
 
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15379,7 +15355,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15389,7 +15365,7 @@ La optimización en toda la organización puede abarcar:</p>
 <h3 id="Decisiones-basadas-en-datos">Decisiones basadas en datos<a class="anchor-link" href="#Decisiones-basadas-en-datos">&#182;</a></h3><ul>
 <li><strong>Cuestionarios:</strong> S1, S2, S4, S5.</li>
 <li><strong>Tarea:</strong> S2 Análisis de negocio - <a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Consigna_DAFO.pdf">Matriz DAFO</a> (<strong>Grupal</strong>)</li>
-<li><strong>Proyecto:</strong> <a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Proyecto_Decisiones_basadas_en_datos.pdf">Estrategia de Big Data Analytics para sus organizaciones</a>,<ul>
+<li><strong>Proyecto:</strong> <a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Proyecto_Decisiones_basadas_en_datos.pdf">Estrategia de Big Data Analytics para sus organizaciones</a>, <ul>
 <li>Semanas: S3, S4, S5, S6 (<strong>Grupal$^*$</strong>)</li>
 <li>Vea el material de referencia S7: <a href="https://udlaec-my.sharepoint.com/:b:/g/personal/mario_gonzalez_rodriguez_udla_edu_ec/ERbK4LeFRdZCmyQjeM7keFYBadaw584q08ZhEVB4qjgj-g?e=1oqNGa&amp;xsdata=MDV8MDF8fDk4NjBjNzIyNTRmNjQ1ZmI5OTEzMDhkYjUyOTI5MjQ2fDFkMmU1OWI3ZmEyNTQ0MDQ4Yjk1ZDAyZGQ0YjdjYjk4fDB8MHw2MzgxOTQ1NjE2NzU4NjAyNDN8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxNVFk0TXpnMU9UTTJOalU1TkRzeE5qZ3pPRFU1TXpZMk5UazBPekU1T25nek4yVjJSelZJVVVoWWJHTk1VbUUzU1RsWVZXNW1VSEpLTWpCT2IwUkthRGRyU0haWGVtZERiMjh4UUhSb2NtVmhaQzUwWVdOMk1nPT18YjQyZTM0MTcwY2M5NGZmYjk5MTMwOGRiNTI5MjkyNDZ8ODJiNDM4YjA0MDRjNDliNTg2YWUzMWFiODMxYzQzZTI%3D&amp;sdata=eDcvbFJ4SGwzRnVNd0VPTWM1UkxIOCtINTFDRGhuaDV5UzZ4QWZ3cGRoOD0%3D">Capturando valor a partir del Big Data</a></li>
 </ul>
@@ -15399,7 +15375,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15408,7 +15384,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Actividad">Actividad<a class="anchor-link" href="#Actividad">&#182;</a></h3><ul>
 <li>¿Cuáles son los beneficios que aportaría el Business Intelligence a su institución?</li>
-<li>En qué proyectos de Inteligencia de Negocios has trabajado.<ul>
+<li>En qué proyectos de Inteligencia de Negocios has trabajado. <ul>
 <li>Qué tipo de analítica has realizado: descriptiva, predictiva, prescriptiva.</li>
 <li>Describe brevemente el proyecto (título).</li>
 </ul>
@@ -15418,7 +15394,7 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15437,25 +15413,22 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Semana-3:-Business-model-Canvas-y-BI">Semana 3: Business model Canvas y BI<a class="anchor-link" href="#Semana-3:-Business-model-Canvas-y-BI">&#182;</a></h1><ul>
-<li><p><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/bmCanvas.pdf">Canvas in a nutshell 1</a></p>
-</li>
-<li><p><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/bmCanvas.pdf">Canvas in a nutshell 2</a></p>
-</li>
-<li><p><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Business_Model_Canvas.pdf">Plantilla Canvas</a></p>
-</li>
+<h3 id="Semana-3:-Business-model-Canvas-y-BI">Semana 3: Business model Canvas y BI<a class="anchor-link" href="#Semana-3:-Business-model-Canvas-y-BI">&#182;</a></h3><ul>
+<li><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/bmCanvas.pdf">Canvas in a nutshell 1</a></li>
+<li><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/bmCanvas1.pdf">Canvas in a nutshell 2</a></li>
+<li><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Business_Model_Canvas.pdf">Plantilla Canvas</a></li>
 <li><p><a href="https://github.com/marsgr6/r-scripts/blob/master/slides/The-Business-Intelligence-Canvas.pdf">Plantilla Inteligencia de Negocios Canvas</a></p>
 </li>
 <li><p><strong>Proyecto:</strong> <a href="https://github.com/marsgr6/r-scripts/blob/master/slides/Proyecto_Decisiones_basadas_en_datos.pdf">Estrategia de Big Data Analytics para sus organizaciones</a>,</p>
 <ul>
-<li>Tareas semanas S3, S4, S5, S6</li>
+<li>Tareas semanas S3, S4, S5, S6 </li>
 <li>Vea el material de referencia S7: <a href="https://udlaec-my.sharepoint.com/:b:/g/personal/mario_gonzalez_rodriguez_udla_edu_ec/ERbK4LeFRdZCmyQjeM7keFYBadaw584q08ZhEVB4qjgj-g?e=1oqNGa&amp;xsdata=MDV8MDF8fDk4NjBjNzIyNTRmNjQ1ZmI5OTEzMDhkYjUyOTI5MjQ2fDFkMmU1OWI3ZmEyNTQ0MDQ4Yjk1ZDAyZGQ0YjdjYjk4fDB8MHw2MzgxOTQ1NjE2NzU4NjAyNDN8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazkwYUdWeUlpd2lWMVFpT2pFeGZRPT18MXxNVFk0TXpnMU9UTTJOalU1TkRzeE5qZ3pPRFU1TXpZMk5UazBPekU1T25nek4yVjJSelZJVVVoWWJHTk1VbUUzU1RsWVZXNW1VSEpLTWpCT2IwUkthRGRyU0haWGVtZERiMjh4UUhSb2NtVmhaQzUwWVdOMk1nPT18YjQyZTM0MTcwY2M5NGZmYjk5MTMwOGRiNTI5MjkyNDZ8ODJiNDM4YjA0MDRjNDliNTg2YWUzMWFiODMxYzQzZTI%3D&amp;sdata=eDcvbFJ4SGwzRnVNd0VPTWM1UkxIOCtINTFDRGhuaDV5UzZ4QWZ3cGRoOD0%3D">Capturando valor a partir del Big Data</a></li>
 </ul>
 </li>
@@ -15464,14 +15437,14 @@ La optimización en toda la organización puede abarcar:</p>
 </div>
 </div>
 </div>
-</div></section></section><section ><section >
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Semana-3:-Aplicaciones-de-BI">Semana 3: Aplicaciones de BI<a class="anchor-link" href="#Semana-3:-Aplicaciones-de-BI">&#182;</a></h1>
+<h2 id="Semana-3:-Aplicaciones-de-BI">Semana 3: Aplicaciones de BI<a class="anchor-link" href="#Semana-3:-Aplicaciones-de-BI">&#182;</a></h2>
 </div>
 </div>
 </div>
