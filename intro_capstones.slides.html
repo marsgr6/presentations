@@ -23,8 +23,13 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 </script>
 
 <style type="text/css">
-    .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
-.highlight  { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: var(--jp-cell-editor-active-background) }
+.highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
 .highlight .err { color: var(--jp-mirror-editor-error-color) } /* Error */
 .highlight .k { color: var(--jp-mirror-editor-keyword-color); font-weight: bold } /* Keyword */
@@ -45,6 +50,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14490,6 +14496,9 @@ a.anchor-link {
 .reveal {
   font-size: 160%;
 }
+.reveal table {
+  font-size: var(--jp-ui-font-size1);
+}
 .reveal pre {
   width: inherit;
   padding: 0.4em;
@@ -14533,6 +14542,23 @@ div.jp-OutputPrompt {
   margin: 5px 5px 0 0;
 }
 
+.reveal div.highlight {
+  margin: 0;
+}
+
+.reveal div.highlight > pre {
+  margin: 0;
+  width: 100%;
+  font-size: var(--jp-code-font-size);
+}
+
+.reveal div.jp-OutputArea-output > pre {
+  margin: 0;
+  width: 90%;
+  font-size: var(--jp-code-font-size);
+  box-shadow: none;
+}
+
 /* Reveal navigation controls */
 
 .reveal .controls .navigate-left,
@@ -14573,17 +14599,14 @@ div.jp-OutputPrompt {
 
 /* Scrollbars */
 
-::-webkit-scrollbar
-{
+::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-::-webkit-scrollbar *
-{
-  background:transparent;
+::-webkit-scrollbar * {
+  background: transparent;
 }
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
   background: #727272 !important;
 }
 </style>
@@ -14610,12 +14633,12 @@ div.jp-OutputPrompt {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14637,9 +14660,8 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Proyecto-Capstone">Proyecto Capstone<a class="anchor-link" href="#Proyecto-Capstone">&#182;</a></h1><h3 id="Maestr%C3%ADa-en-Inteligencia-de-Negocios-y-Ciencia-de-Datos">Maestr&#237;a en Inteligencia de Negocios y Ciencia de Datos<a class="anchor-link" href="#Maestr%C3%ADa-en-Inteligencia-de-Negocios-y-Ciencia-de-Datos">&#182;</a></h3><p>Prof. Mario González, Ph.D. en Informática</p>
-<p><img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=cmuZCwsAAAAJ&citpid=7" alt="Mario Gonzalez" width="200" height="200"></p>
+<p><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=cmuZCwsAAAAJ&citpid=7" alt="Me" width="128" height="128"></p>
 <ul>
-<li><a href="http://investigacion.udla.edu.ec/udla_teams/mario-gonzalez/">Web page</a></li>
 <li><a href="https://scholar.google.co.uk/citations?user=cmuZCwsAAAAJ&amp;hl=en">Google scholar</a></li>
 </ul>
 
@@ -14830,10 +14852,10 @@ div.jp-OutputPrompt {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Contenido">Contenido<a class="anchor-link" href="#Contenido">&#182;</a></h3><ul>
-<li>Semana 1: Proceso de la ciencia de datos</li>
-<li>Semana 2: <strong>Bases de datos</strong></li>
-<li>Semana 3: Revisión de literatura y objeto de estudio</li>
-<li>Semana 4: Planteamiento del problema</li>
+<li>Semana 1: Proceso de la ciencia de datos - <strong>Ensemble models</strong></li>
+<li>Semana 2: <strong>Bases de datos</strong> - <strong>Artificial neural networks</strong></li>
+<li>Semana 3: Revisión de literatura y objeto de estudio - <strong>Deep learning</strong></li>
+<li>Semana 4: Planteamiento del problema - <strong>Deep learning</strong></li>
 <li>Semana 5: Análisis descriptivo, exploratorio y analítica visual</li>
 <li>Semana 6: <strong>Anteproyectos</strong> y revisión de metodologías</li>
 <li>Semana 7: Técnicas de <strong>modelado</strong></li>
