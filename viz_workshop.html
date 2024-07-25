@@ -7482,51 +7482,87 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Ejercicio-Exploratorio-de-Datos">Ejercicio Exploratorio de Datos<a class="anchor-link" href="#Ejercicio-Exploratorio-de-Datos">¶</a></h3><p>En este ejercicio, interpretaremos un conjunto de gráficos exploratorios univariados y bivariados para comprender mejor los datos disponibles. Los gráficos a analizar incluyen:</p>
-<ol>
-<li><strong>Univariados:</strong><ul>
-<li><strong>Histogramas:</strong> Visualización de la distribución de una sola variable, mostrando la frecuencia de los valores en intervalos específicos.</li>
-</ul>
-<img alt="" src="hist.png"/><ul>
-<li><strong>Density Plots:</strong> Gráficos de densidad que muestran la estimación de la densidad de probabilidad de una variable, ofreciendo una visión más suave de la distribución en comparación con los histogramas.</li>
-</ul>
+<h3 id="Ejercicio-Exploratorio-de-Datos">Ejercicio Exploratorio de Datos<a class="anchor-link" href="#Ejercicio-Exploratorio-de-Datos">¶</a></h3><p>En este ejercicio, interpretaremos un conjunto de gráficos exploratorios univariados y bivariados para comprender mejor los datos disponibles.</p>
+<p><strong>Objetivo del Ejercicio:</strong></p>
+<p>El objetivo de este ejercicio es desarrollar habilidades en la interpretación de gráficos exploratorios univariados y bivariados, y utilizar estas interpretaciones para obtener insights significativos sobre los datos. Los estudiantes deben ser capaces de identificar patrones, correlaciones y anomalías en los datos, y utilizar estos hallazgos para guiar análisis más profundos y toma de decisiones informadas en proyectos de análisis de datos.</p>
+<h3 id="Datos-categ%C3%B3ricos">Datos categóricos<a class="anchor-link" href="#Datos-categ%C3%B3ricos">¶</a></h3><p><strong>Instrucciones:</strong></p>
+<ul>
+<li><p><strong>Interpreten barplots y heatmap</strong> para identificar patrones significativos y relaciones entre las categorías de dos variables. Analicen las celdas con altas y bajas frecuencias, y discutan las posibles causas y significados de estos patrones.</p>
 </li>
-</ol>
-<p><img alt="" src="kde1.png"/></p>
-<p><img alt="" src="kde.png"/></p>
-<ol>
-<li><strong>Bivariados:</strong><ul>
-<li><strong>Scatterplot:</strong> Gráfico de dispersión que representa la relación entre dos variables mediante puntos en un plano bidimensional.</li>
+<li><p><strong>Barplots bivariados:</strong> Gráficos de barras que representan la distribución de una variable categórica, con la opción de desglosar la información usando una segunda variable categórica mediante el parámetro <code>hue</code>. Esto permite comparar la frecuencia o el valor promedio de una variable en diferentes subgrupos.</p>
+</li>
 </ul>
-<img alt="" src="scatter.png"/><ul>
-<li><strong>2D KDE Contours:</strong> Gráfico de contornos de estimación de densidad kernel bidimensional, que muestra la densidad de puntos en un plano, resaltando áreas de alta y baja concentración.</li>
+<p><img alt="" src="barplot_ux.png"/></p>
+<ul>
+<li><strong>Heatmap a partir de una Tabla de Contingencia:</strong> Gráfico de mapa de calor que visualiza la frecuencia de ocurrencias de combinaciones de dos variables categóricas. La intensidad del color en cada celda representa la frecuencia de la combinación correspondiente, facilitando la identificación de patrones y relaciones entre las categorías.</li>
 </ul>
-<img alt="" src="kde2d.png"/><ul>
-<li><strong>Lmplot:</strong> Gráfico que muestra la relación entre dos variables con una línea de regresión ajustada, permitiendo observar tendencias lineales y relaciones más complejas.</li>
-</ul>
-<img alt="" src="lmplot.png"/><ul>
-<li><strong>Pairplots:</strong> Conjunto de gráficos de dispersión que muestran las relaciones entre todas las combinaciones de variables en el dataset, junto con histogramas de cada variable en la diagonal.</li>
-</ul>
-<img alt="" src="pair.png"/><ul>
-<li><strong>Correlation Matrix Plot with Dendrogram:</strong> Matriz de correlación que muestra las correlaciones entre múltiples variables, acompañada de un dendrograma que agrupa variables similares basadas en sus correlaciones.</li>
-</ul>
-<img alt="" src="corrmap.png"/></li>
-</ol>
-<p><strong>Instrucciones:</strong></p>
-<ol>
+<p><img alt="" src="heatmap_ux.png"/></p>
+<h3 id="Datos-continuos">Datos continuos<a class="anchor-link" href="#Datos-continuos">¶</a></h3><p><strong>Instrucciones:</strong></p>
+<ul>
 <li><p><strong>Interpreten los histogramas y density plots</strong> para entender la distribución de las variables individuales, identificando características como la media, la mediana, la moda, y la presencia de sesgos o valores atípicos.</p>
 </li>
 <li><p><strong>Analicen los scatterplots y 2D KDE contours</strong> para observar las relaciones entre pares de variables, identificando patrones, tendencias y posibles correlaciones.</p>
 </li>
 <li><p><strong>Examinen la correlation matrix plot with dendrogram</strong> para identificar correlaciones fuertes y agrupaciones de variables que se comportan de manera similar.</p>
 </li>
-<li><p><strong>Utilicen los pairplots</strong> para obtener una visión general de las relaciones bivariadas entre todas las variables del dataset, y para identificar patrones complejos que podrían no ser evidentes en gráficos individuales.</p>
+<li><p><strong>Utilicen pairplots</strong> para obtener una visión general de las relaciones bivariadas entre todas las variables del dataset, y para identificar patrones complejos que podrían no ser evidentes en gráficos individuales.</p>
 </li>
-<li><p><strong>Interpretaren los lmplots</strong> para analizar la relación entre dos variables específicas, observando la línea de regresión y cualquier desviación significativa de la tendencia lineal.</p>
+<li><p><strong>Interpretar lmplots</strong> para analizar la relación entre dos variables específicas, observando la línea de regresión y cualquier desviación significativa de la tendencia lineal.</p>
+</li>
+</ul>
+<ol>
+<li><p><strong>Univariados:</strong></p>
+<ul>
+<li><strong>Histogramas:</strong> Visualización de la distribución de una sola variable, mostrando la frecuencia de los valores en intervalos específicos.</li>
+</ul>
+<p><img alt="" src="hist.png"/></p>
+<ul>
+<li><strong>Density Plots:</strong> Gráficos de densidad que muestran la estimación de la densidad de probabilidad de una variable, ofreciendo una visión más suave de la distribución en comparación con los histogramas.</li>
+</ul>
 </li>
 </ol>
-<p><strong>Objetivo del Ejercicio:</strong></p>
-<p>El objetivo de este ejercicio es desarrollar habilidades en la interpretación de gráficos exploratorios univariados y bivariados, y utilizar estas interpretaciones para obtener insights significativos sobre los datos. Los estudiantes deben ser capaces de identificar patrones, correlaciones y anomalías en los datos, y utilizar estos hallazgos para guiar análisis más profundos y toma de decisiones informadas en proyectos de análisis de datos.</p>
+<p><img alt="" src="kde1.png"/></p>
+<p><img alt="" src="kde.png"/></p>
+<ol start="2">
+<li><p><strong>Bivariados:</strong></p>
+<ul>
+<li><strong>Scatterplot:</strong> Gráfico de dispersión que representa la relación entre dos variables mediante puntos en un plano bidimensional.</li>
+</ul>
+<p><img alt="" src="scatter.png"/></p>
+<ul>
+<li><strong>2D KDE Contours:</strong> Gráfico de contornos de estimación de densidad kernel bidimensional, que muestra la densidad de puntos en un plano, resaltando áreas de alta y baja concentración.</li>
+</ul>
+<p><img alt="" src="kde2d.png"/></p>
+<ul>
+<li><strong>Lmplot:</strong> Gráfico que muestra la relación entre dos variables con una línea de regresión ajustada, permitiendo observar tendencias lineales y relaciones más complejas.</li>
+</ul>
+<p><img alt="" src="lmplot.png"/></p>
+<ul>
+<li><strong>Pairplots:</strong> Conjunto de gráficos de dispersión que muestran las relaciones entre todas las combinaciones de variables en el dataset, junto con histogramas de cada variable en la diagonal.</li>
+</ul>
+<p><img alt="" src="pair.png"/></p>
+<ul>
+<li><strong>Correlation Matrix Plot with Dendrogram:</strong> Matriz de correlación que muestra las correlaciones entre múltiples variables, acompañada de un dendrograma que agrupa variables similares basadas en sus correlaciones.</li>
+</ul>
+<p><img alt="" src="corrmap.png"/></p>
+</li>
+</ol>
+<h3 id="An%C3%A1lisis-de-Datos-Mixtos-(Categ%C3%B3ricos-y-Continuos)">Análisis de Datos Mixtos (Categóricos y Continuos)<a class="anchor-link" href="#An%C3%A1lisis-de-Datos-Mixtos-(Categ%C3%B3ricos-y-Continuos)">¶</a></h3><ul>
+<li><p><strong>Boxplots, Stripplots y Violinplots:</strong> Gráficos que permiten visualizar la distribución de una variable continua en función de una variable categórica. Los boxplots muestran la mediana, los cuartiles y los posibles valores atípicos, los stripplots representan cada observación individual, proporcionando una visión más detallada de la dispersión de los datos, y los violinplots combinan las características de los boxplots y los density plots, mostrando la distribución de los datos con una estimación de densidad.</p>
+<ul>
+<li><strong>Gráfico de Violin</strong>:</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="box_titanic.png"/></p>
+<ul>
+<li><strong>Catplots (strips/swarm):</strong></li>
+</ul>
+<p><img alt="" src="swarm_titanic.png"/></p>
+<ul>
+<li><strong>Caja dentro de un violin:</strong></li>
+</ul>
+<p><img alt="" src="violin_titanic.png"/></p>
 </div>
 </div>
 </div>
