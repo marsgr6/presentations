@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia de la Mosca</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        .question { font-size: 1.2em; margin: 20px 0; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin: 10px 0; }
+        .btn { padding: 10px 15px; font-size: 1em; margin-top: 20px; cursor: pointer; }
+        .result { font-weight: bold; font-size: 1.2em; color: #00796b; }
+    </style>
+</head>
+<body>
+
+    <h1>Trivia de la Mosca</h1>
+    <div id="trivia">
+        <div id="question-container">
+            <p class="question" id="question"></p>
+            <ul class="options" id="options"></ul>
+        </div>
+        <button class="btn" id="next-btn" onclick="nextQuestion()">Siguiente</button>
+    </div>
+    <p class="result" id="result"></p>
+
+    <script>
+        // Trivia questions
+        const questions = [
+            { 
+                question: "¿La mosca en su viaje, qué buscará al final del pasaje?", 
+                options: ["La luz de un farol", "La barrera del sol", "El borde que le da control", "El camino sin un rol"], 
+                answer: 2 
+            },
+            { 
+                question: "La barrera que refleja, ¿cuál será su magia vieja?", 
+                options: ["Que la mosca siempre se aleja", "Que por ella el camino se despeja", "La mosca en ella nunca se queda", "La mosca en ella se queja"], 
+                answer: 2 
+            },
+            { 
+                question: "El muro que absorbe, ¿qué destino le otorga?", 
+                options: ["Un nuevo rumbo a la mosca la otorga", "Finaliza el viaje y ya no explora", "Hace que gire y que se decora", "La lleva a otra dimensión sonora"], 
+                answer: 1 
+            },
+            { 
+                question: "¿Cuántos pasos puede andar, hasta el borde llegar?", 
+                options: ["Depende del azar", "Depende de su volar", "Depende de las barreras al pasar", "Depende de si desea girar"], 
+                answer: 0 
+            },
+            { 
+                question: "En cadenas de Markov se mueve, ¿qué probabilidad le concede?", 
+                options: ["Un estado a elegir", "Un camino a seguir", "La dirección que deba ir", "Cada paso al azar seguir"], 
+                answer: 3 
+            },
+            { 
+                question: "El camino reflejado, ¿cómo es recordado?", 
+                options: ["Como el viaje de un lado", "Como el paso inesperado", "Un paso retrocedido y olvidado", "Como reflejo del pasado"], 
+                answer: 3 
+            },
+            { 
+                question: "Si el camino se ramifica, ¿qué probabilidad aplica?", 
+                options: ["Escondida", "Selectiva", "Independiente", "Predictiva"], 
+                answer: 2 
+            },
+            { 
+                question: "Al azar su paso decide, ¿quién su trayecto mide?", 
+                options: ["La misma suerte en su palma", "El límite en calma", "La barrera que le da la calma", "Las probabilidades en el alma"], 
+                answer: 3 
+            },
+            { 
+                question: "El proceso de caminata, ¿cómo se caracteriza?", 
+                options: ["Lineal y fijo", "Libre y rico", "Estocástico en cada giro", "Simétrico y prolijo"], 
+                answer: 2 
+            },
+            { 
+                question: "Cuando el muro toca, ¿cómo es su ruta loca?", 
+                options: ["Una serie de pasos fijos", "Un fin abrupto sin espejos", "Un camino que se recoge en reflejos", "Una vuelta sin complejos"], 
+                answer: 1 
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Load the first question
+        function loadQuestion() {
+            document.getElementById("result").textContent = "";
+            const questionElement = document.getElementById("question");
+            const optionsElement = document.getElementById("options");
+
+            questionElement.textContent = questions[currentQuestion].question;
+            optionsElement.innerHTML = "";
+            
+            questions[currentQuestion].options.forEach((option, index) => {
+                const li = document.createElement("li");
+                li.textContent = option;
+                li.onclick = () => selectAnswer(index);
+                optionsElement.appendChild(li);
+            });
+        }
+
+        function selectAnswer(selectedIndex) {
+            const correctIndex = questions[currentQuestion].answer;
+            if (selectedIndex === correctIndex) {
+                score++;
+                document.getElementById("result").textContent = "¡Correcto!";
+            } else {
+                document.getElementById("result").textContent = "Incorrecto. La respuesta era: " + questions[currentQuestion].options[correctIndex];
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("question-container").style.display = "none";
+                document.getElementById("result").textContent = `¡Trivia terminada! Puntaje final: ${score}/${questions.length}`;
+                document.getElementById("next-btn").style.display = "none";
+            }
+        }
+
+        // Start the trivia
+        loadQuestion();
+    </script>
+
+</body>
+</html>
