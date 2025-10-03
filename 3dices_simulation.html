@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Non-Transitive Dice 3D Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .visualization {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .info-panel {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .dice-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .blue {
+            border-left: 5px solid #3498db;
+        }
+        .brown {
+            border-left: 5px solid #a0522d;
+        }
+        .black {
+            border-left: 5px solid #2c3e50;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+        button:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .simulation-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        input[type="number"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-weight: bold;
+            width: 120px;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .winner {
+            background: rgba(46, 204, 113, 0.3);
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .simulation-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: none;
+        }
+        .sim-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        .comparison {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .cycle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .cycle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 15px;
+        }
+        .cycle-arrow {
+            font-size: 24px;
+            margin: 0 10px;
+        }
+        .dice-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .blue-bg {
+            background: #3498db;
+        }
+        .brown-bg {
+            background: #a0522d;
+        }
+        .black-bg {
+            background: #2c3e50;
+        }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 10;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .visualization {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Non-Transitive Dice Paradox</h1>
+            <p class="subtitle">A 3D visualization of dice with a rock-paper-scissors relationship</p>
+        </header>
+        
+        <div class="content">
+            <div class="visualization" id="dice-container">
+                <div class="loading" id="loading">Rolling dice...</div>
+            </div>
+            
+            <div class="info-panel">
+                <h2>Dice Configurations</h2>
+                
+                <div class="dice-info blue">
+                    <h3>Blue Die</h3>
+                    <p>Faces: 4, 4, 4, 4, 4, 1</p>
+                </div>
+                
+                <div class="dice-info brown">
+                    <h3>Brown Die</h3>
+                    <p>Faces: 3, 3, 3, 3, 3, 6</p>
+                </div>
+                
+                <div class="dice-info black">
+                    <h3>Black Die</h3>
+                    <p>Faces: 2, 2, 2, 5, 5, 5</p>
+                </div>
+                
+                <div class="controls">
+                    <div class="button-row">
+                        <button id="roll-button">Roll All Dice</button>
+                        <button id="reset-button">Reset View</button>
+                    </div>
+                    
+                    <div class="simulation-controls">
+                        <input type="number" id="sim-count" value="10000" min="100" max="1000000" step="1000">
+                        <button id="simulate-button">Run Simulation</button>
+                    </div>
+                </div>
+                
+                <div class="results" id="results">
+                    <h3>Roll Results</h3>
+                    <div class="result-item">
+                        <span>Blue Die:</span>
+                        <span id="blue-result">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Brown Die:</span>
+                        <span id="brown-result">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Black Die:</span>
+                        <span id="black-result">-</span>
+                    </div>
+                    <div class="winner" id="winner"></div>
+                </div>
+                
+                <div class="simulation-results" id="sim-results">
+                    <h3>Simulation Results</h3>
+                    <p id="sim-runs">Runs: 0</p>
+                    <div class="sim-stat">
+                        <span>Blue Wins:</span>
+                        <span id="blue-wins">0 (0%)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill blue-bg" id="blue-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="sim-stat">
+                        <span>Brown Wins:</span>
+                        <span id="brown-wins">0 (0%)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill brown-bg" id="brown-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="sim-stat">
+                        <span>Black Wins:</span>
+                        <span id="black-wins">0 (0%)</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill black-bg" id="black-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="sim-stat">
+                        <span>Ties:</span>
+                        <span id="ties">0 (0%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison">
+            <h2>The Non-Transitive Cycle</h2>
+            <div class="cycle">
+                <div class="cycle-item">
+                    <div class="dice-color blue-bg"></div>
+                    <span>Blue</span>
+                </div>
+                <div class="cycle-arrow">→</div>
+                <div class="cycle-item">
+                    <div class="dice-color brown-bg"></div>
+                    <span>Brown</span>
+                </div>
+                <div class="cycle-arrow">→</div>
+                <div class="cycle-item">
+                    <div class="dice-color black-bg"></div>
+                    <span>Black</span>
+                </div>
+                <div class="cycle-arrow">→</div>
+                <div class="cycle-item">
+                    <div class="dice-color blue-bg"></div>
+                    <span>Blue</span>
+                </div>
+            </div>
+            <p>Blue beats Brown (5/6), Brown beats Black (5/9), Black beats Blue (25/36) in pairwise games!</p>
+        </div>
+        
+        <footer>
+            <p>Created to demonstrate the non-transitive dice paradox | Three.js Visualization</p>
+        </footer>
+    </div>
+
+    <script>
+        let scene, camera, renderer;
+        let dice = [];
+        
+        const diceConfigs = {
+            blue: [4, 4, 4, 4, 4, 1],
+            brown: [3, 3, 3, 3, 3, 6],
+            black: [2, 2, 2, 5, 5, 5]
+        };
+        
+        const diceColors = {
+            blue: 0x3498db,
+            brown: 0xa0522d,
+            black: 0x2c3e50
+        };
+        
+        const dicePositions = [
+            { x: -3, y: 0, z: 0 },
+            { x: 0, y: 0, z: 0 },
+            { x: 3, y: 0, z: 0 }
+        ];
+
+        let currentResults = {
+            blue: null,
+            brown: null,
+            black: null
+        };
+
+        let isRolling = false;
+        
+        function init() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0c1445);
+            
+            const container = document.getElementById('dice-container');
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 2, 8);
+            camera.lookAt(0, 0, 0);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            createDice();
+            
+            window.addEventListener('resize', onWindowResize);
+            document.getElementById('roll-button').addEventListener('click', rollDice);
+            document.getElementById('reset-button').addEventListener('click', resetView);
+            document.getElementById('simulate-button').addEventListener('click', runSimulation);
+            
+            animate();
+        }
+        
+        function createDice() {
+            const diceTypes = ['blue', 'brown', 'black'];
+            
+            diceTypes.forEach((type, index) => {
+                const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: diceColors[type],
+                    shininess: 30
+                });
+                
+                const diceMesh = new THREE.Mesh(geometry, material);
+                diceMesh.position.set(dicePositions[index].x, dicePositions[index].y, dicePositions[index].z);
+                
+                // Create number display (single plane in front)
+                const numberPlane = createNumberPlane(4, type); // Start with 4
+                numberPlane.position.z = 0.76;
+                diceMesh.add(numberPlane);
+                
+                scene.add(diceMesh);
+                dice.push({
+                    mesh: diceMesh,
+                    numberPlane: numberPlane,
+                    type: type,
+                    rotationSpeed: { x: 0, y: 0, z: 0 },
+                    isRolling: false
+                });
+            });
+        }
+        
+        function createNumberPlane(number, type) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 256;
+            canvas.height = 256;
+            
+            context.fillStyle = 'white';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            
+            context.font = 'bold 180px Arial';
+            context.fillStyle = 'black';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(number.toString(), canvas.width/2, canvas.height/2);
+            
+            context.strokeStyle = 'black';
+            context.lineWidth = 8;
+            context.strokeRect(4, 4, canvas.width-8, canvas.height-8);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            const material = new THREE.MeshBasicMaterial({ map: texture });
+            const geometry = new THREE.PlaneGeometry(1.4, 1.4);
+            
+            return new THREE.Mesh(geometry, material);
+        }
+        
+        function updateDiceNumber(die, number) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 256;
+            canvas.height = 256;
+            
+            context.fillStyle = 'white';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            
+            context.font = 'bold 180px Arial';
+            context.fillStyle = 'black';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.fillText(number.toString(), canvas.width/2, canvas.height/2);
+            
+            context.strokeStyle = 'black';
+            context.lineWidth = 8;
+            context.strokeRect(4, 4, canvas.width-8, canvas.height-8);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            die.numberPlane.material.map = texture;
+            die.numberPlane.material.needsUpdate = true;
+        }
+        
+        function rollDice() {
+            if (isRolling) return;
+            
+            isRolling = true;
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('roll-button').disabled = true;
+            
+            document.getElementById('results').style.display = 'block';
+            
+            currentResults = { blue: null, brown: null, black: null };
+            updateResultsDisplay();
+            document.getElementById('winner').textContent = '';
+            
+            let completedRolls = 0;
+            
+            dice.forEach((die) => {
+                die.isRolling = true;
+                die.rotationSpeed = {
+                    x: (Math.random() * 0.2 + 0.15) * (Math.random() > 0.5 ? 1 : -1),
+                    y: (Math.random() * 0.2 + 0.15) * (Math.random() > 0.5 ? 1 : -1),
+                    z: (Math.random() * 0.2 + 0.15) * (Math.random() > 0.5 ? 1 : -1)
+                };
+                
+                const faceIndex = Math.floor(Math.random() * 6);
+                const result = diceConfigs[die.type][faceIndex];
+                currentResults[die.type] = result;
+                
+                setTimeout(() => {
+                    const slowDownInterval = setInterval(() => {
+                        die.rotationSpeed.x *= 0.85;
+                        die.rotationSpeed.y *= 0.85;
+                        die.rotationSpeed.z *= 0.85;
+                        
+                        if (Math.abs(die.rotationSpeed.x) < 0.005) {
+                            clearInterval(slowDownInterval);
+                            die.isRolling = false;
+                            die.mesh.rotation.set(0, 0, 0);
+                            
+                            updateDiceNumber(die, result);
+                            
+                            completedRolls++;
+                            updateResultsDisplay();
+                            
+                            if (completedRolls === dice.length) {
+                                setTimeout(() => {
+                                    determineWinner();
+                                    isRolling = false;
+                                    document.getElementById('loading').style.display = 'none';
+                                    document.getElementById('roll-button').disabled = false;
+                                }, 300);
+                            }
+                        }
+                    }, 50);
+                }, 1800);
+            });
+        }
+        
+        function updateResultsDisplay() {
+            document.getElementById('blue-result').textContent = currentResults.blue !== null ? currentResults.blue : '-';
+            document.getElementById('brown-result').textContent = currentResults.brown !== null ? currentResults.brown : '-';
+            document.getElementById('black-result').textContent = currentResults.black !== null ? currentResults.black : '-';
+        }
+        
+        function determineWinner() {
+            const b = currentResults.blue;
+            const br = currentResults.brown;
+            const bl = currentResults.black;
+            
+            let winnerText = '';
+            
+            if (b > br && b > bl) {
+                winnerText = '🎉 Blue die wins this round!';
+            } else if (br > b && br > bl) {
+                winnerText = '🎉 Brown die wins this round!';
+            } else if (bl > b && bl > br) {
+                winnerText = '🎉 Black die wins this round!';
+            } else {
+                if (b === br && b === bl) {
+                    winnerText = '🤝 Three-way tie!';
+                } else if (b === br && b > bl) {
+                    winnerText = '🤝 Blue and Brown tie!';
+                } else if (b === bl && b > br) {
+                    winnerText = '🤝 Blue and Black tie!';
+                } else if (br === bl && br > b) {
+                    winnerText = '🤝 Brown and Black tie!';
+                }
+            }
+            
+            document.getElementById('winner').textContent = winnerText;
+        }
+        
+        function runSimulation() {
+            const numSims = parseInt(document.getElementById('sim-count').value);
+            
+            if (numSims < 100 || numSims > 1000000) {
+                alert('Please enter a number between 100 and 1,000,000');
+                return;
+            }
+            
+            document.getElementById('simulate-button').disabled = true;
+            document.getElementById('sim-results').style.display = 'block';
+            
+            let blueWins = 0, brownWins = 0, blackWins = 0, ties = 0;
+            
+            for (let i = 0; i < numSims; i++) {
+                const blue = diceConfigs.blue[Math.floor(Math.random() * 6)];
+                const brown = diceConfigs.brown[Math.floor(Math.random() * 6)];
+                const black = diceConfigs.black[Math.floor(Math.random() * 6)];
+                
+                if (blue > brown && blue > black) {
+                    blueWins++;
+                } else if (brown > blue && brown > black) {
+                    brownWins++;
+                } else if (black > blue && black > brown) {
+                    blackWins++;
+                } else {
+                    ties++;
+                }
+            }
+            
+            document.getElementById('sim-runs').textContent = `Runs: ${numSims.toLocaleString()}`;
+            document.getElementById('blue-wins').textContent = `${blueWins.toLocaleString()} (${(blueWins/numSims*100).toFixed(2)}%)`;
+            document.getElementById('brown-wins').textContent = `${brownWins.toLocaleString()} (${(brownWins/numSims*100).toFixed(2)}%)`;
+            document.getElementById('black-wins').textContent = `${blackWins.toLocaleString()} (${(blackWins/numSims*100).toFixed(2)}%)`;
+            document.getElementById('ties').textContent = `${ties.toLocaleString()} (${(ties/numSims*100).toFixed(2)}%)`;
+            
+            document.getElementById('blue-bar').style.width = `${(blueWins/numSims*100)}%`;
+            document.getElementById('brown-bar').style.width = `${(brownWins/numSims*100)}%`;
+            document.getElementById('black-bar').style.width = `${(blackWins/numSims*100)}%`;
+            
+            document.getElementById('simulate-button').disabled = false;
+        }
+        
+        function resetView() {
+            camera.position.set(0, 2, 8);
+            camera.lookAt(0, 0, 0);
+        }
+        
+        function onWindowResize() {
+            const container = document.getElementById('dice-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            dice.forEach(die => {
+                if (die.isRolling) {
+                    die.mesh.rotation.x += die.rotationSpeed.x;
+                    die.mesh.rotation.y += die.rotationSpeed.y;
+                    die.mesh.rotation.z += die.rotationSpeed.z;
+                }
+            });
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.onload = init;
+    </script>
+</body>
+</html>
