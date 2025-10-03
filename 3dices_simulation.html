@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: white;
             overflow-x: hidden;
         }
@@ -63,13 +63,13 @@
             background: rgba(255, 255, 255, 0.1);
         }
         .blue {
-            border-left: 5px solid #3498db;
+            border-left: 5px solid #4169E1;
         }
         .brown {
-            border-left: 5px solid #a0522d;
+            border-left: 5px solid #8B4513;
         }
         .black {
-            border-left: 5px solid #2c3e50;
+            border-left: 5px solid #000000;
         }
         .controls {
             display: flex;
@@ -192,13 +192,13 @@
             margin-bottom: 5px;
         }
         .blue-bg {
-            background: #3498db;
+            background: #4169E1;
         }
         .brown-bg {
-            background: #a0522d;
+            background: #8B4513;
         }
         .black-bg {
-            background: #2c3e50;
+            background: #000000;
         }
         .loading {
             position: absolute;
@@ -246,17 +246,17 @@
                 <h2>Dice Configurations</h2>
                 
                 <div class="dice-info blue">
-                    <h3>Blue Die</h3>
+                    <h3>Blue Dice</h3>
                     <p>Faces: 4, 4, 4, 4, 4, 1</p>
                 </div>
                 
                 <div class="dice-info brown">
-                    <h3>Brown Die</h3>
+                    <h3>Brown Dice</h3>
                     <p>Faces: 3, 3, 3, 3, 3, 6</p>
                 </div>
                 
                 <div class="dice-info black">
-                    <h3>Black Die</h3>
+                    <h3>Black Dice</h3>
                     <p>Faces: 2, 2, 2, 5, 5, 5</p>
                 </div>
                 
@@ -275,15 +275,15 @@
                 <div class="results" id="results">
                     <h3>Roll Results</h3>
                     <div class="result-item">
-                        <span>Blue Die:</span>
+                        <span>Blue Dice:</span>
                         <span id="blue-result">-</span>
                     </div>
                     <div class="result-item">
-                        <span>Brown Die:</span>
+                        <span>Brown Dice:</span>
                         <span id="brown-result">-</span>
                     </div>
                     <div class="result-item">
-                        <span>Black Die:</span>
+                        <span>Black Dice:</span>
                         <span id="black-result">-</span>
                     </div>
                     <div class="winner" id="winner"></div>
@@ -363,9 +363,9 @@
         };
         
         const diceColors = {
-            blue: 0x3498db,
-            brown: 0xa0522d,
-            black: 0x2c3e50
+            blue: 0x4169E1,
+            brown: 0x8B4513,
+            black: 0x000000
         };
         
         const dicePositions = [
@@ -384,7 +384,7 @@
         
         function init() {
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x0c1445);
+            scene.background = new THREE.Color(0xe8e8e8);
             
             const container = document.getElementById('dice-container');
             camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
@@ -395,10 +395,10 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
             
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
             scene.add(ambientLight);
             
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
             directionalLight.position.set(5, 5, 5);
             scene.add(directionalLight);
             
@@ -414,6 +414,7 @@
         
         function createDice() {
             const diceTypes = ['blue', 'brown', 'black'];
+            const initialNumbers = [4, 3, 2]; // Blue starts at 4, Brown at 3, Black at 2
             
             diceTypes.forEach((type, index) => {
                 const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
@@ -425,8 +426,8 @@
                 const diceMesh = new THREE.Mesh(geometry, material);
                 diceMesh.position.set(dicePositions[index].x, dicePositions[index].y, dicePositions[index].z);
                 
-                // Create number display (single plane in front)
-                const numberPlane = createNumberPlane(4, type); // Start with 4
+                // Create number display with initial value
+                const numberPlane = createNumberPlane(initialNumbers[index], type);
                 numberPlane.position.z = 0.76;
                 diceMesh.add(numberPlane);
                 
@@ -562,11 +563,11 @@
             let winnerText = '';
             
             if (b > br && b > bl) {
-                winnerText = '🎉 Blue die wins this round!';
+                winnerText = '🎉 Blue dice wins this round!';
             } else if (br > b && br > bl) {
-                winnerText = '🎉 Brown die wins this round!';
+                winnerText = '🎉 Brown dice wins this round!';
             } else if (bl > b && bl > br) {
-                winnerText = '🎉 Black die wins this round!';
+                winnerText = '🎉 Black dice wins this round!';
             } else {
                 if (b === br && b === bl) {
                     winnerText = '🤝 Three-way tie!';
