@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Practices for Data Science Modeling</title>
+<style>
+    :root {
+        --primary-color: #1f3a5f;
+        --secondary-color: #3d5a80;
+        --accent-color: #ee6c4d;
+        --bg-color: #f4f7f6;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --border-color: #e0e4e8;
+    }
+
+    body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 40px 20px;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    }
+
+    h1, h2, h3, h4 {
+        color: var(--primary-color);
+        margin-top: 1.5em;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        border-bottom: 3px solid var(--accent-color);
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 1.8em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+    }
+
+    code, .highlight {
+        background: #f0f2f5;
+        color: #d6336c;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 600;
+    }
+
+    img {
+        max-width: 900px; 
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        display: block;
+    }
+
+    /* Table of Contents */
+    .toc {
+        background: #f8faff;
+        border-left: 5px solid var(--secondary-color);
+        padding: 25px;
+        border-radius: 6px;
+        margin: 30px 0;
+    }
+
+    .toc h2 {
+        margin-top: 0;
+        border: none;
+        font-size: 1.4em;
+    }
+
+    .toc ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .toc ul li {
+        margin-bottom: 8px;
+    }
+
+    .toc ul ul {
+        padding-left: 20px;
+        border-left: 2px solid #dde3ea;
+        margin-top: 5px;
+    }
+
+    .toc a {
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .toc a:hover {
+        color: var(--accent-color);
+    }
+
+    /* Grid Layouts for comparisons */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: #fcfcfc;
+        border: 1px solid var(--border-color);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        color: var(--secondary-color);
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 6px;
+    }
+
+    .alert {
+        background-color: #fff3cd;
+        border-left: 5px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Best Practices for Data Science Modeling</h1>
+    
+    <p>This guide serves as a manual summarizing best practices for data science modeling, incorporating lessons learned from multiple robust data projects. The goal is to ensure models are <strong>statistically valid, reproducible, and immediately useful for business decision-making.</strong></p>
+    
+    <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#eda">1. Exploratory Data Analysis (EDA)</a></li>
+            <li><a href="#general">2. General Modeling Guidelines</a></li>
+            <li><a href="#classification">3. Classification Models</a></li>
+            <li><a href="#regression">4. Regression Models</a></li>
+            <li><a href="#timeseries">5. Time Series Modeling</a></li>
+            <li><a href="#clustering">6. Clustering Models</a></li>
+        </ul>
+    </div>
+    
+    <h2 id="eda">1. Exploratory Data Analysis (EDA)</h2>
+    <p>EDA is a non-negotiable stage before modeling. It dictates your feature engineering strategy and helps you understand distributions, structural relationships, and potential modeling pitfalls.</p>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3>Key Tasks</h3>
+            <ul>
+                <li>Validate data quality and missingness</li>
+                <li>Identify and handle outliers appropriately</li>
+                <li>Detect multicollinearity and dependencies</li>
+                <li>Explore temporal structures (if applicable)</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Time Series EDA Techniques</h3>
+            <ul>
+                <li>Trend and change-point detection</li>
+                <li>Seasonality mapping</li>
+                <li>Autocorrelation analysis (ACF/PACF)</li>
+                <li>Stationarity testing</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Recommended Visualizations</h3>
+    
+    <h4>Violin Plot – Distribution Comparison</h4>
+    <p>Violin plots are useful for comparing distributions across groups or experimental conditions. They combine kernel density estimation with boxplot features.</p>
+    <img src="violin_plot.png" alt="Violin Plot Example">
+
+    <h4>Line Plot – Temporal Profiles</h4>
+    <p>Line plots help analyze patterns across conditions or time dimensions. In time series analysis, these plots reveal seasonal structure and trend shifts.</p>
+    <img src="line_plot.png" alt="Line Plot Example">
+
+    <h4>Heatmap – Density or Pattern Detection</h4>
+    <p>Heatmaps are useful to visualize frequency patterns or temporal density distributions. For example, they can show how behavior changes across time or experimental conditions.</p>
+    <img src="heatmap.png" alt="Heatmap Example">
+    
+    <h2 id="general">2. General Modeling Guidelines</h2>
+    
+    <div class="alert">
+        <strong>Critical Priority: Prevent Data Leakage</strong><br>
+        Leakage occurs when information from the future or target variable contaminates your predictors. Always clearly define the <span class="highlight">prediction moment</span> and ensure only features genuinely available at that exact time are used.
+    </div>
+
+    <div class="grid-container">
+        <div class="card">
+            <h3>Define the Unit of Analysis</h3>
+            <p>Determine the exact grain of your data before modeling. This dictates your feature engineering:</p>
+            <ul>
+                <li>Customer &rarr; Transaction</li>
+                <li>Store &rarr; Week</li>
+                <li>User &rarr; Session</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Model Validation Strategies</h3>
+            <p>Choose the validation method that matches your data structure:</p>
+            <ul>
+                <li><strong>Cross-Validation (K-fold):</strong> Standard independent data.</li>
+                <li><strong>Time-Series Validation:</strong> Sequential rolling windows for temporal data.</li>
+                <li><strong>Out-of-Time (OOT):</strong> Ultimate test for production readiness.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Handling Class Imbalance</h3>
+    <p>Many real-world problems (fraud detection, churn, predictive maintenance) feature heavy class imbalances. Do not rely on baseline <em>Accuracy</em>.</p>
+    <ul>
+        <li><strong>Algorithmic adjustments:</strong> Class weights, Custom cost functions.</li>
+        <li><strong>Data adjustments:</strong> SMOTE (oversampling the minority) or undersampling the majority.</li>
+        <li><strong>Target Metrics:</strong> Optimize for <code>ROC-AUC</code>, <code>Precision/Recall</code>, <code>F1-score</code>, or <code>Precision@K</code> depending on the business cost of False Positives vs. False Negatives.</li>
+    </ul>
+    
+    <h2 id="classification">3. Classification Models</h2>
+    <p>Used to predict categorical outcomes (e.g., Customer churn, Lead conversion, Fraud detection).</p>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3 id="classification_classic">Statistical Models</h3>
+            <p><em>When to use: When interpretability and strict regulatory compliance are more important than pure predictive power.</em></p>
+            <ul>
+                <li><strong>Logistic Regression:</strong> Estimates the probability of a binary outcome using a logistic curve. Highly interpretable baseline model.</li>
+                <li><strong>Naive Bayes:</strong> A probabilistic classifier based on Bayes' theorem, relying on the (often naive) assumption that features are independent.</li>
+                <li><strong>Linear Discriminant Analysis (LDA):</strong> Finds a linear combination of features that separates classes by maximizing the variance between them and minimizing variance within them.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 id="classification_ml">Machine Learning Models</h3>
+            <p><em>When to use: When dealing with high-dimensional data, complex nonlinear relationships, and raw predictive performance is the goal.</em></p>
+            <ul>
+                <li><strong>Gradient Boosting (XGBoost, LightGBM):</strong> An ensemble method that builds decision trees sequentially, with each new tree correcting the errors of the previous ones.</li>
+                <li><strong>Random Forest:</strong> An ensemble technique that trains multiple independent decision trees on random subsets of data and features, merging them via majority vote to prevent overfitting.</li>
+                <li><strong>Support Vector Machines (SVM):</strong> Finds the optimal hyperplane in an N-dimensional space that distinctly classifies the data points with the maximum margin.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h2 id="regression">4. Regression Models</h2>
+    <p>Used to predict continuous numerical variables (e.g., Sales prediction, Price estimation, Lifetime Value).</p>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3 id="regression_classic">Statistical Models</h3>
+            <ul>
+                <li><strong>Linear Regression (OLS):</strong> Models the linear relationship between a dependent variable and one or more independent variables by fitting a straight line that minimizes squared errors.</li>
+                <li><strong>Ridge & Lasso Regression:</strong> Extensions of linear regression that add a penalty (L2 for Ridge, L1 for Lasso) to shrink coefficients, preventing overfitting and handling multicollinearity. Lasso can also perform feature selection.</li>
+                <li><strong>Generalized Linear Models (GLMs):</strong> A flexible generalization of linear regression that allows for response variables with error distribution models other than a normal distribution (e.g., Poisson for count data).</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 id="regression_ml">Machine Learning Models</h3>
+            <ul>
+                <li><strong>Random Forest Regressor:</strong> Averages the numerical predictions of numerous independent decision trees. Excellent for capturing non-linear relationships without manual feature transformations.</li>
+                <li><strong>Gradient Boosting Regressor:</strong> Sequentially builds trees to minimize a continuous loss function (like Mean Squared Error). Highly dominant in tabular data competitions.</li>
+                <li><strong>Deep Neural Networks:</strong> Uses multiple layers of interconnected nodes to learn complex, non-linear mappings from inputs to continuous outputs. Best suited for massive datasets or unstructured data.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h2 id="timeseries">5. Time Series Modeling</h2>
+    <p>Focuses on predicting future values based on sequential historical data (e.g., Demand forecasting, Inventory planning).</p>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3 id="timeseries_classic">Statistical Models</h3>
+            <ul>
+                <li><strong>ARIMA / SARIMA:</strong> AutoRegressive Integrated Moving Average (with a Seasonal component). Models future values based on past values, past errors, and differencing to achieve stationarity.</li>
+                <li><strong>Exponential Smoothing (ETS):</strong> Forecasts using weighted averages of past observations, where the weights decay exponentially as the observations get older. Decomposes into Error, Trend, and Seasonality.</li>
+                <li><strong>Prophet:</strong> An additive regression model developed by Meta that handles trend, seasonality, and holiday effects. It is robust to missing data and shifts in the trend.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 id="timeseries_ml">Machine Learning Models</h3>
+            <ul>
+                <li><strong>Tree-based Models (XGBoost):</strong> Adapts standard ML by creating "lagged" variables (past values as current features) and rolling statistics to predict future steps using decision trees.</li>
+                <li><strong>LSTM Networks:</strong> Long Short-Term Memory networks are a type of Recurrent Neural Network (RNN) specifically designed to remember long-term dependencies in sequential data.</li>
+                <li><strong>Temporal Convolutional Networks (TCN):</strong> Uses dilated, causal 1D convolutions to handle sequences. They are often faster to train and possess a longer memory range than standard LSTMs.</li>
+            </ul>
+        </div>
+    </div>
+
+    <img src="temporal.png">
+
+    <img src="trend.png">
+
+    <img src="changepoints.png">
+
+    <img src="forecasting.png">
+
+
+    <h2 id="clustering">6. Clustering Models (Unsupervised Learning)</h2>
+    <p>Clustering involves grouping unlabeled data based on inherent similarities. It is highly exploratory and often used for customer segmentation, anomaly detection, or as a preprocessing step for supervised learning.</p>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3>Common Algorithms</h3>
+            <ul>
+                <li><strong>K-Means:</strong> Fast, centroid-based model. Best for creating spherical clusters of similar size. <em>Requires specifying the number of clusters (K) in advance.</em></li>
+                <li><strong>DBSCAN:</strong> Density-based spatial clustering. Excellent for identifying clusters of arbitrary shapes and isolating noise/outliers. <em>Does not require specifying K.</em></li>
+                <li><strong>Hierarchical Clustering:</strong> Builds a tree-like structure (dendrogram). Great for understanding the taxonomy of your data, especially with smaller datasets.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Evaluation Metrics</h3>
+            <p>Since clustering lacks "true" labels, evaluation relies on measuring cluster cohesion (how tight they are) and separation (how far apart they are):</p>
+            <ul>
+                <li><strong>Silhouette Score:</strong> Measures how similar an object is to its own cluster compared to other clusters (Ranges from -1 to 1; closer to 1 is better).</li>
+                <li><strong>Elbow Method:</strong> A visual diagnostic to find the optimal <em>K</em> in K-Means by plotting the Within-Cluster Sum of Squares (WCSS).</li>
+                <li><strong>Davies-Bouldin Index:</strong> Calculates the average similarity ratio of each cluster with its most similar cluster (Lower scores indicate better separation).</li>
+            </ul>
+        </div>
+    </div>
+
+    <img src="clusters.png">
+
+    <h2>Final Recommendations</h2>
+    <ul>
+        <li><strong>Validate Assumptions:</strong> Check for normality, homoscedasticity, or stationarity before applying models that require them.</li>
+        <li><strong>Business Context First:</strong> Prioritize interpretability when models directly inform human business decisions.</li>
+        <li><strong>Pipeline Documentation:</strong> Document the entire ETL and modeling pipeline to ensure reproducibility of results.</li>
+    </ul>
+
+    <h2 id="sources">7. Sources & References</h2>
+    <p>This guide was compiled using course materials, documentation, and lessons from the following resources:</p>
+    <ul class="sources-list">
+        <li><a href="https://marsgr6.github.io/rna-online/" target="_blank">Redes Neuronales Artificiales (RNA)</a></li>
+        <li><a href="https://marsgr6.github.io/EN-online/" target="_blank">Estadística de Negpcios (EN Online)</a></li>
+        <li><a href="https://marsgr6.github.io/ml-online/" target="_blank">Machine Learning Online</a></li>
+        <li><a href="https://marsgr6.github.io/estadistica-ux/" target="_blank">Estadística para UX</a></li>
+        <li><a href="https://github.com/CienciaDatosUDLA/Ciencia-de-Datos" target="_blank">Ciencia de Datos - UDLA GitHub Repository</a></li>
+    </ul>
+    
+    <p style="text-align: center; margin-top: 40px; font-style: italic; color: var(--secondary-color);">
+        "Good modeling is not only about predictive accuracy, but also about reliability, interpretability, and applicability in real-world decision-making."
+    </p>
+
+</div>
+
+</body>
+</html>
