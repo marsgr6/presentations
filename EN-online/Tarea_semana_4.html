@@ -7577,6 +7577,7 @@ a.anchor-link {
 </ul>
 <div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1">#data = pd.read_csv("../data/CHR_data.csv")  # si la estructura es la del repositorio de GitHub</span>
 
@@ -7586,32 +7587,33 @@ a.anchor-link {
 <span class="c1"># También puede leer el archivo desde el repositorio de GitHub.</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/marsgr6/EN-online/8a1cee296279c274d8f05f3905fce97c1f7636a2/data/CHR_data.csv"</span><span class="p">)</span>
 </pre></div>
-<p><strong>Indicaciones:</strong></p>
-<ol>
-<li><strong>(2pts)</strong> Preprocesamiento de datos</li>
-</ol>
-<ul>
-<li>Filtre los datos, conserve solamente las columnas numéricas.</li>
+<h2 id="Indicaciones:"><strong>Indicaciones:</strong><a class="anchor-link" href="#Indicaciones:">¶</a></h2><h3 id="1.-(2-pts)-Preprocesamiento-de-datos">1. <strong>(2 pts)</strong> Preprocesamiento de datos<a class="anchor-link" href="#1.-(2-pts)-Preprocesamiento-de-datos">¶</a></h3><ul>
+<li>Conserve únicamente las variables numéricas.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">data_cl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">'number'</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">data_cl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">"number"</span><span class="p">)</span>
 </pre></div>
 <ul>
-<li>Remueva columnas con varianza cero.</li>
+<li>Remueva las columnas con varianza cero. Estas variables toman el mismo valor para todos los empleados y no aportan información para formar grupos.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="n">data_cl</span> <span class="o">=</span> <span class="n">data_cl</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">data_cl</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">data_cl</span> <span class="o">=</span> <span class="n">data_cl</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">data_cl</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 <ul>
-<li>Estandarice los datos usando escalado estándar.</li>
+<li>Elimine la variable <strong>EmployeeNumber</strong>, ya que es un identificador único para cada empleado. Los identificadores no representan características del empleado y pueden generar agrupaciones artificiales.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="c1"># standardizing the data</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight"><pre><span></span><span class="n">data_cl</span> <span class="o">=</span> <span class="n">data_cl</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"EmployeeNumber"</span><span class="p">])</span>
+</pre></div>
+<blockquote>
+<p><strong>Nota:</strong> Las variables <strong>EmployeeCount</strong> y <strong>StandardHours</strong> son eliminadas automáticamente por tener varianza cero. La variable <strong>Over18</strong> también es constante (todos los registros tienen el valor <code>"Y"</code>), pero al ser categórica no forma parte del conjunto de variables numéricas utilizado en esta práctica.</p>
+</blockquote>
+<ul>
+<li>Estandarice los datos utilizando <strong>StandardScaler</strong>.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">data_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_cl</span><span class="p">)</span>
 </pre></div>
-<ol start="2">
-<li><strong>(2pts)</strong> Utilice K-means y realice un análisis de codo para decidir cuántos clusters usar.</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<h3 id="2.--(2pts)-Utilice-K-means-y-realice-un-an%C3%A1lisis-de-codo-para-decidir-cu%C3%A1ntos-clusters-usar.">2.  <strong>(2pts)</strong> Utilice K-means y realice un análisis de codo para decidir cuántos clusters usar.<a class="anchor-link" href="#2.--(2pts)-Utilice-K-means-y-realice-un-an%C3%A1lisis-de-codo-para-decidir-cu%C3%A1ntos-clusters-usar.">¶</a></h3><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
 
 <span class="c1"># fitting multiple k-means algorithms and storing the values in an empty list</span>
 <span class="n">SSE</span> <span class="o">=</span> <span class="p">[]</span>
@@ -7629,10 +7631,7 @@ a.anchor-link {
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Inertia'</span><span class="p">)</span>
 </pre></div>
 <p><img alt="No description has been provided for this image" src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/elbow_attrition.png" width="600"/></p>
-<ol start="3">
-<li><strong>(2pts)</strong> Use PCA para visualizar los clusters generados.</li>
-</ol>
-<ul>
+<h3 id="3.--(2pts)-Use-PCA-para-visualizar-los-clusters-generados.">3.  <strong>(2pts)</strong> Use PCA para visualizar los clusters generados.<a class="anchor-link" href="#3.--(2pts)-Use-PCA-para-visualizar-los-clusters-generados.">¶</a></h3><ul>
 <li>Visualice usando las priemeras 2 componentes principales.</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
@@ -7650,10 +7649,7 @@ a.anchor-link {
 
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pc_transformation</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"PC1"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"PC2"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"Cluster"</span><span class="p">)</span>
 </pre></div>
-<ol start="4">
-<li><strong>(2pts)</strong> Realice un análisis descriptivo y decida entre  $k\in \{2, 3, 4, 5\}$.</li>
-</ol>
-<ul>
+<h3 id="4.-(2pts)-Realice-un-an%C3%A1lisis-descriptivo-y-decida-entre--$k%5Cin-%5C%7B2,-3,-4,-5%5C%7D$.">4. <strong>(2pts)</strong> Realice un análisis descriptivo y decida entre  $k\in \{2, 3, 4, 5\}$.<a class="anchor-link" href="#4.-(2pts)-Realice-un-an%C3%A1lisis-descriptivo-y-decida-entre--$k%5Cin-%5C%7B2,-3,-4,-5%5C%7D$.">¶</a></h3><ul>
 <li><p>A continuación tiene un ejemplo para visualizar 5 clusters usando PCA.</p>
 </li>
 <li><p><strong>Replique el código del punto 3 cambiando el número de clústeres.</strong></p>
@@ -7667,10 +7663,7 @@ a.anchor-link {
                <span class="n">hue</span><span class="o">=</span><span class="s2">"Attrition"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="s2">"quartil"</span><span class="p">)</span>
 </pre></div>
 <p><img alt="No description has been provided for this image" src="https://raw.githubusercontent.com/marsgr6/r-scripts/master/imgs/cl5_violin_attrition.png" width="600"/></p>
-<ol start="5">
-<li><strong>(2pts)</strong> De conclusiones.</li>
-</ol>
-<p><strong>ANEXO</strong></p>
+<h3 id="5.-(2pts)-De-conclusiones.">5. <strong>(2pts)</strong> De conclusiones.<a class="anchor-link" href="#5.-(2pts)-De-conclusiones.">¶</a></h3><p><strong>ANEXO</strong></p>
 <ul>
 <li>Random Forest (RF) le puede ayudar a identificar qué variables son importantes para generar los grupos, estas son las variables que quiere utilizar en su análisis descriptivo para entender los grupos.</li>
 <li>En este caso se muestra un ejemplo de features importantes según RF para 5 clusters.</li>
@@ -7706,7 +7699,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Descargar script de visualizacion</span>
@@ -7742,16 +7735,16 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>--2025-12-02 11:40:37--  https://raw.githubusercontent.com/marsgr6/EN-online/refs/heads/main/viz.py
-185.199.108.133, 185.199.109.133, 185.199.110.133, ...tent.com)... 
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
+<pre>--2026-06-29 17:25:46--  https://raw.githubusercontent.com/marsgr6/EN-online/refs/heads/main/viz.py
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+200 OKequest sent, awaiting response... 
 Length: 12923 (13K) [text/plain]
-Saving to: ‘viz.py’
+Saving to: ‘viz.py.1’
 
-viz.py              100%[===================&gt;]  12.62K  --.-KB/s    in 0s      
+viz.py.1            100%[===================&gt;]  12,62K  --.-KB/s    in 0,001s  
 
-2025-12-02 11:40:42 (30.5 MB/s) - ‘viz.py’ saved [12923/12923]
+2026-06-29 17:25:46 (12,9 MB/s) - ‘viz.py.1’ saved [12923/12923]
 
 </pre>
 </div>
