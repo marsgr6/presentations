@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rethinking the Capstone — The Case for Library Development</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+
+<style>
+  :root {
+    --ink: #0A0F16;
+    --panel: #121926;
+    --panel-2: #1A2435;
+    --grid: rgba(126, 147, 167, 0.15); 
+    --text: #F8FAFC; 
+    --muted: #94A3B8;
+    --blue: #38BDF8;
+    --blue-bright: #7DD3FC;
+    --amber: #FBBF24;
+    --coral: #F87171;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --display: 'Sora', sans-serif;
+  }
+
+  .reveal * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background-color: var(--ink); }
+
+.reveal { 
+  font-family: var(--sans); 
+  color: var(--text); 
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px; 
+  background-position: -1px -1px;
+}
+
+  .reveal .slides section {
+    text-align: left;
+    padding: 60px !important;
+    width: 100%;
+    height: 100%;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6em; 
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  
+  .eyebrow::before {
+    content: "";
+    width: 24px; height: 2px;
+    background: var(--amber);
+    display: inline-block;
+  }
+
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 0.5em;
+  }
+  .reveal h1 { font-size: 2.5em; line-height: 1.15; }
+  .reveal h2 { font-size: 1.7em; }
+  .reveal h3 { font-size: 1.25em; color: var(--blue-bright); }
+
+  .reveal p, .reveal li { 
+    font-size: 0.95em; 
+    line-height: 1.6; 
+    color: var(--text); 
+  }
+
+  .reveal ul { margin-left: 0; padding-left: 0; }
+  .reveal ul li {
+    list-style: none;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 24px;
+  }
+  .reveal ul li::before {
+    content: "";
+    position: absolute; left: 0; top: 12px;
+    width: 12px; height: 12px;
+    border: 2px solid var(--blue);
+    background: transparent;
+    transform: rotate(45deg);
+  }
+  .reveal ul li strong { color: var(--blue-bright); font-weight: 600; }
+  .reveal ul li.li-amber::before { border-color: var(--amber); }
+  .reveal ul li.li-coral::before { border-color: var(--coral); }
+
+  .title-slide {
+    display: flex; flex-direction: column; justify-content: center; height: 100%;
+  }
+  .title-slide .kicker {
+    font-family: var(--mono); color: var(--blue-bright); letter-spacing: .15em;
+    text-transform: uppercase; font-size: 0.6em; margin-bottom: 24px;
+  }
+  .title-slide .sub {
+    font-family: var(--sans); font-size: 0.95em; color: var(--muted);
+    margin-top: 24px; max-width: 85%; border-left: 3px solid var(--amber);
+    padding-left: 24px; line-height: 1.5;
+  }
+  .title-slide .presenter {
+    margin-top: 60px; font-family: var(--mono); font-size: 0.65em; color: var(--muted);
+  }
+
+  .cols { display: flex; gap: 48px; align-items: flex-start; }
+  .col { flex: 1; }
+
+  .diagram-wrap {
+    margin-top: 24px;
+    background: var(--panel); 
+    border: 1px solid rgba(126, 147, 167, 0.3); 
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  .diagram-caption {
+    font-family: var(--mono); font-size: 0.5em; color: var(--muted);
+    margin-top: 16px; letter-spacing: .03em; text-align: center;
+  }
+
+  .stat-grid { display: flex; gap: 32px; margin-top: 32px; }
+  .stat-card {
+    flex: 1; background: var(--panel); border: 1px solid rgba(126, 147, 167, 0.2);
+    padding: 24px; border-radius: 8px; border-top: 4px solid var(--blue-bright);
+  }
+  .stat-card .num { font-family: var(--display); font-size: 2.2em; font-weight: 700; color: var(--blue-bright); }
+  .stat-card .label { font-family: var(--mono); font-size: 0.55em; color: var(--text); text-transform: uppercase; letter-spacing: .06em; margin-top: 12px; }
+  .stat-card p { font-size: 0.5em; margin-top: 12px; color: var(--muted); line-height: 1.5; }
+
+  .footer-tag {
+    position: absolute; bottom: 32px; right: 50px;
+    font-family: var(--mono); font-size: 0.55em; color: var(--muted);
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+
+  .reveal a { color: var(--amber); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- SLIDE 1: TITLE -->
+<section>
+  <div class="title-slide">
+    <div class="kicker">Capstone Track Proposal</div>
+    <h1>Rethinking the Capstone: The Case for Library Development</h1>
+    <div class="sub">Moving beyond application front-ends toward core software engineering. Building robust abstraction layers and reusable libraries provides the academic rigor and structural focus required of modern software engineers.</div>
+    <div class="presenter">Mario González &nbsp;·&nbsp; Software Engineering</div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 1: LIBRARIES AS SOFTWARE PRODUCTS -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§00 · Libraries you use</div>
+
+<h2>Some of the World's Most Influential Software Products Are Libraries</h2>
+
+<p style="max-width:1100px;margin-bottom:2px;">
+Across software engineering, artificial intelligence, scientific computing,
+web development, and computer vision, many of the most impactful software
+products are reusable libraries. They provide stable APIs, reusable
+components, and the foundation upon which millions of applications are built.
+</p>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:24px;
+margin-top:20px;
+">
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLI-SIfIoT7ZRQwyi1RFHbQ5YqGaLB2fo9_6rGRPXBc626dxbruw_1oql7&s=10"
+style="height:72px;margin-bottom:18px;">
+
+<h3>C++ Boost</h3>
+
+<p>
+
+Modern C++ Libraries
+
+</p>
+
+<p style="font-size:.82em;">
+
+General-purpose C++ libraries that inspired many
+features later adopted into the C++ Standard Library.
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+style="height:72px;margin-bottom:18px;">
+
+<h3>React</h3>
+
+<p>
+
+Web Development
+
+</p>
+
+<p style="font-size:.82em;">
+
+Component-based user interface library powering
+modern web applications.
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg"
+style="height:72px;margin-bottom:18px;">
+
+<h3>TensorFlow</h3>
+
+<p>
+
+Artificial Intelligence
+
+</p>
+
+<p style="font-size:.82em;">
+
+Deep learning framework providing scalable machine
+learning infrastructure.
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg"
+style="height:72px;margin-bottom:18px;">
+
+<h3>Pandas</h3>
+
+<p>
+
+Data Analytics
+
+</p>
+
+<p style="font-size:.82em;">
+
+Introduced the DataFrame abstraction that became
+the standard for data analysis in Python.
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/3/31/NumPy_logo_2020.svg"
+style="height:72px;margin-bottom:18px;">
+
+<h3>NumPy</h3>
+
+<p>
+
+Scientific Computing
+
+</p>
+
+<p style="font-size:.82em;">
+
+Foundation of the Python scientific computing
+ecosystem.
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+
+<div class="card" style="text-align:center;padding:1px;">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg"
+style="height:72px;margin-bottom:18px;">
+
+<h3>OpenCV</h3>
+
+<p>
+
+Computer Vision
+
+</p>
+
+<p style="font-size:.82em;">
+
+Reusable image processing and computer vision
+algorithms used in research and industry.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="callout" style="margin-top:34px;">
+
+<strong>
+
+These projects are not end-user applications.
+They are reusable software platforms that enable entire ecosystems of
+applications, researchers, and developers.
+
+</strong>
+
+</div>
+
+<div class="footer-tag">01 / 15</div>
+
+</section>
+
+<!-- SLIDE 2: FROM APPLICATIONS TO LIBRARIES -->
+<section>
+  <div class="eyebrow">§01 · The Motivation</div>
+
+  <h2>From Applications to Reusable Libraries</h2>
+
+  <div class="cols">
+    <div class="col">
+
+      <p>
+        Software applications and software libraries develop different engineering skills.
+        While applications emphasize user interaction, libraries emphasize reusable design,
+        abstraction, and computational capabilities.
+      </p>
+
+      <ul>
+
+        <li>
+          <strong>Common practice:</strong>
+          Many software capstones focus on dashboards, web applications, or CRUD systems.
+        </li>
+
+        <li class="li-amber">
+          <strong>Educational challenge:</strong>
+          A significant portion of the project is often devoted to interface development,
+          authentication, routing, and user experience, leaving less time for algorithm design,
+          data modeling, optimization, and software architecture.
+        </li>
+
+        <li class="li-coral">
+          <strong>Opportunity:</strong>
+          Developing a reusable library shifts the emphasis toward API design,
+          modular architecture, testing, documentation, and computational methods—
+          skills that can be reused across many future applications.
+        </li>
+
+      </ul>
+
+      <p style="margin-top:20px;">
+        <strong>Proposed approach:</strong>
+        Evaluate students on the quality of their library architecture,
+        public API, documentation, testing, and computational design,
+        rather than on the sophistication of a graphical interface.
+      </p>
+
+      <div class="callout" style="margin-top:28px;">
+
+<strong>
+
+<div class="callout" style="margin-top:30px;">
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:80px;
+">
+
+<div style="text-align:center;">
+
+<i class="fas fa-window-maximize"
+style="font-size:70px;color:var(--blue-bright);"></i>
+
+<h3 style="margin-top:15px;">Application</h3>
+
+<p>Solves one problem</p>
+
+</div>
+
+<div style="
+font-size:52px;
+color:var(--muted);
+">
+
+→
+
+</div>
+
+<div style="text-align:center;">
+
+<i class="fas fa-cubes"
+style="font-size:70px;color:var(--amber);"></i>
+
+<h3 style="margin-top:15px;">Library</h3>
+
+<p>Enables many applications</p>
+
+</div>
+
+</div>
+
+</div>
+
+</strong>
+
+</div>
+
+    </div>
+  </div>
+
+  <div class="footer-tag">02 / 15</div>
+</section>
+
+<!-- SLIDE 3: ACADEMIC RIGOR -->
+<section>
+  <div class="eyebrow">§02 · Core Philosophy</div>
+  <h2>Why Libraries Demand Deeper Engineering</h2>
+  <div class="cols">
+    <div class="col">
+      <p>Without a visual layout to fall back on, the assessment shifts entirely to the quality of the codebase itself. Students must master core software engineering principles:</p>
+      <ul>
+        <li><strong>Managing complexity:</strong> The purpose of a library is not simply to implement algorithms—it is to transform complex computational processes into a simple, reusable, and reliable programming interface.</li>
+        <li><strong>API/library Design & Abstraction:</strong> Students learn to define clear method signatures, handle variable state, and design interfaces that other developers can adopt intuitively.</li>
+        <li class="li-amber"><strong>Modularity & Maintainability:</strong> Forcing separation of concerns. The mathematical model must be completely decoupled from data ingestion and output formatting.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-tag">03 / 15</div>
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 4: MANAGING COMPLEXITY THROUGH SOFTWARE ABSTRACTION -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§03 · Software Engineering</div>
+
+<h2>Managing Complexity Through Software Abstraction</h2>
+
+<div class="cols">
+
+    <!-- LEFT COLUMN -->
+
+    <div class="col">
+
+        <p>
+            Scientific libraries allow researchers and developers to work
+            at the level of their domain instead of the level of
+            implementation. A well-designed library hides computational
+            complexity behind a simple and reusable programming interface.
+        </p>
+
+        <ul>
+
+            <li>
+                <strong>Simple interface.</strong>
+                Users focus on solving problems rather than implementing
+                algorithms.
+            </li>
+
+            <li class="li-amber">
+                <strong>Hidden implementation.</strong>
+                Numerical methods, optimization, data structures,
+                parallelism, and hardware acceleration remain inside
+                the library.
+            </li>
+
+            <li class="li-coral">
+                <strong>Reusable software.</strong>
+                The same implementation can support many different
+                applications through a stable and documented API.
+            </li>
+
+        </ul>
+
+        <p style="margin-top:22px;">
+            <strong>Key idea:</strong>
+            Great libraries reduce complexity by exposing a clean,
+            intuitive API while encapsulating sophisticated computational
+            methods.
+        </p>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+
+    <div class="col" style="max-width:560px;">
+
+<div class="diagram-wrap" style="padding:26px;">
+
+<svg
+viewBox="0 0 520 430"
+width="100%"
+xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+<marker
+id="arrow"
+markerWidth="10"
+markerHeight="10"
+refX="8"
+refY="4"
+orient="auto">
+
+<path
+d="M0,0 L0,8 L8,4 Z"
+fill="var(--muted)"/>
+
+</marker>
+
+</defs>
+
+<!-- USER -->
+
+<rect
+
+x="120"
+
+y="18"
+
+width="280"
+
+height="48"
+
+rx="6"
+
+fill="var(--panel-2)"
+
+stroke="var(--blue-bright)"
+
+stroke-width="2"/>
+
+<text
+
+x="260"
+
+y="47"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="16"
+
+fill="var(--text)">
+
+Users & Applications
+
+</text>
+
+<line
+
+x1="260"
+
+y1="66"
+
+x2="260"
+
+y2="95"
+
+stroke="var(--muted)"
+
+stroke-width="2"
+
+marker-end="url(#arrow)"/>
+
+<!-- API -->
+
+<rect
+
+x="70"
+
+y="100"
+
+width="380"
+
+height="60"
+
+rx="6"
+
+fill="rgba(56,189,248,.12)"
+
+stroke="var(--blue)"
+
+stroke-width="2"/>
+
+<text
+
+x="260"
+
+y="127"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="17"
+
+fill="var(--blue-bright)">
+
+Public API
+
+</text>
+
+<text
+
+x="260"
+
+y="147"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="12"
+
+fill="var(--text)">
+
+Functions • Classes • Modules
+
+</text>
+
+<line
+
+x1="260"
+
+y1="160"
+
+x2="260"
+
+y2="188"
+
+stroke="var(--muted)"
+
+stroke-width="2"
+
+marker-end="url(#arrow)"/>
+
+<!-- LIBRARY -->
+
+<rect
+
+x="40"
+
+y="192"
+
+width="440"
+
+height="88"
+
+rx="6"
+
+fill="var(--panel-2)"
+
+stroke="var(--amber)"
+
+stroke-width="2"/>
+
+<text
+
+x="260"
+
+y="218"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="17"
+
+fill="var(--amber)">
+
+Library Implementation
+
+</text>
+
+<text
+
+x="260"
+
+y="242"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="12"
+
+fill="var(--text)">
+
+Algorithms • Data Structures • Optimization
+
+</text>
+
+<text
+
+x="260"
+
+y="262"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="12"
+
+fill="var(--text)">
+
+Validation • Parallelism • Error Handling
+
+</text>
+
+<line
+
+x1="260"
+
+y1="280"
+
+x2="260"
+
+y2="308"
+
+stroke="var(--muted)"
+
+stroke-width="2"
+
+marker-end="url(#arrow)"/>
+
+<!-- BACKEND -->
+
+<rect
+
+x="20"
+
+y="314"
+
+width="480"
+
+height="90"
+
+rx="6"
+
+fill="var(--panel-2)"
+
+stroke="var(--grid)"
+
+stroke-width="2"/>
+
+<text
+
+x="260"
+
+y="340"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="16"
+
+fill="var(--muted)">
+
+Scientific Computing Infrastructure
+
+</text>
+
+<text
+
+x="260"
+
+y="365"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="12"
+
+fill="var(--text)">
+
+Numerical Libraries • Parallel Frameworks
+
+</text>
+
+<text
+
+x="260"
+
+y="385"
+
+text-anchor="middle"
+
+font-family="IBM Plex Mono"
+
+font-size="12"
+
+fill="var(--muted)">
+
+CPU • GPU • Distributed Systems
+
+</text>
+
+</svg>
+
+</div>
+
+    </div>
+
+</div>
+
+<div class="footer-tag">04 / 15</div>
+
+</section>
+
+<!-- SLIDE 5: FAMOUS LIBRARIES -->
+<section>
+  <div class="eyebrow">§04 · Industry Context</div>
+  <h2>Famous Libraries Are Layers of Abstraction</h2>
+  <p>The most widely adopted tools in our industry exist specifically to abstract away lower-level computational frameworks, allowing data scientists to focus on outcomes rather than syntax.</p>
+  
+  <div class="diagram-wrap" style="max-width: 860px; margin: 20px auto; padding: 20px;">
+    <svg viewBox="0 0 760 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- Headers -->
+      <text x="140" y="24" font-family="IBM Plex Mono" font-size="12" fill="var(--blue-bright)" text-anchor="middle" letter-spacing="0.1em">HIGH-LEVEL API/library</text>
+      <text x="380" y="24" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)" text-anchor="middle" letter-spacing="0.1em">WRAPS</text>
+      <text x="620" y="24" font-family="IBM Plex Mono" font-size="12" fill="var(--amber)" text-anchor="middle" letter-spacing="0.1em">COMPUTATIONAL CORE</text>
+
+      <!-- Row 1: Keras -->
+      <rect x="20" y="44" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="140" y="68" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">Keras</text>
+      <line x1="280" y1="63" x2="480" y2="63" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow5)"/>
+      <rect x="500" y="44" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="620" y="68" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">TensorFlow</text>
+
+      <!-- Row 2: Lightning -->
+      <rect x="20" y="94" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="140" y="118" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">PyTorch Lightning</text>
+      <line x1="280" y1="113" x2="480" y2="113" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow5)"/>
+      <rect x="500" y="94" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="620" y="118" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">PyTorch</text>
+
+      <!-- Row 3: Pandas -->
+      <rect x="20" y="144" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="140" y="168" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">Pandas</text>
+      <line x1="280" y1="163" x2="480" y2="163" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow5)"/>
+      <rect x="500" y="144" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="620" y="168" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">NumPy</text>
+
+      <!-- Row 4: Seaborn -->
+      <rect x="20" y="194" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="140" y="218" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">Seaborn</text>
+      <line x1="280" y1="213" x2="480" y2="213" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow5)"/>
+      <rect x="500" y="194" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="620" y="218" font-family="IBM Plex Mono" font-size="14" fill="var(--text)" text-anchor="middle">Matplotlib</text>
+
+      <!-- Row 5: Capstone -->
+      <rect x="20" y="244" width="240" height="38" rx="4" fill="rgba(56, 189, 248, 0.15)" stroke="var(--blue-bright)" stroke-dasharray="4,4" stroke-width="2"/>
+      <text x="140" y="268" font-family="IBM Plex Mono" font-size="14" fill="var(--blue-bright)" text-anchor="middle">Your Capstone Library</text>
+      <line x1="280" y1="263" x2="480" y2="263" stroke="var(--blue-bright)" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow5blue)"/>
+      <rect x="500" y="244" width="240" height="38" rx="4" fill="var(--panel-2)" stroke="var(--grid)" stroke-width="2"/>
+      <text x="620" y="268" font-family="IBM Plex Mono" font-size="14" fill="var(--muted)" text-anchor="middle">Raw Domain Engine</text>
+
+      <defs>
+        <marker id="arrow5" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--muted)"/></marker>
+        <marker id="arrow5blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--blue-bright)"/></marker>
+      </defs>
+    </svg>
+  </div>
+  <div class="footer-tag">05 / 15</div>
+</section>
+
+<!-- SLIDE 6: SCIKIT-LEARN WORKFLOW -->
+<section>
+  <div class="eyebrow">§05 · Workflow</div>
+  <h2>Scikit-learn Makes the Estimator Lifecycle Feel Uniform</h2>
+  <div class="cols">
+    <div class="col">
+      <p>Scikit-learn reduces a supervised-learning project to a clear, repeatable sequence: import an estimator, define its hyperparameters, fit on training data, and predict on unseen inputs. That same abstraction works across supervised regressors, classifiers, clustering, and many other estimator families.</p>
+      <ul>
+        <li><strong>Import:</strong> `from sklearn.neural_network import MLPRegressor`</li>
+        <li><strong>Configure:</strong> define the model and hyperparameters in one place before training.</li>
+        <li><strong>Train:</strong> `model.fit(X_train, y_train)`</li>
+        <li><strong>Infer:</strong> `model.predict(X_test)` and evaluate against `y_test`.</li>
+        <li class="li-amber"><strong>Abstraction:</strong> the same workflow style applies to regressors, classifiers, clustering, and more, so you learn one interface and reuse it everywhere.</li>
+      </ul>
+    </div>
+    <div class="col" style="max-width: 500px;">
+      <div class="diagram-wrap" style="padding: 24px;">
+        <svg viewBox="0 0 400 280" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <text x="200" y="20" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)" letter-spacing="0.08em">SCIKIT-LEARN ESTIMATOR WORKFLOW</text>
+
+          <rect x="40" y="44" width="320" height="34" rx="6" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+          <text x="200" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">from sklearn.neural_network import MLPRegressor</text>
+
+          <line x1="200" y1="82" x2="200" y2="100" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-workflow)"/>
+
+          <rect x="40" y="100" width="320" height="34" rx="6" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+          <text x="200" y="122" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">model = MLPRegressor(hidden_layer_sizes=(8, 4))</text>
+
+          <line x1="200" y1="138" x2="200" y2="156" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-workflow)"/>
+
+          <rect x="40" y="156" width="320" height="34" rx="6" fill="var(--panel-2)" stroke="var(--coral)" stroke-width="2"/>
+          <text x="200" y="178" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">model.fit(X_train, y_train)</text>
+
+          <line x1="200" y1="194" x2="200" y2="212" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-workflow)"/>
+
+          <rect x="40" y="212" width="320" height="34" rx="6" fill="rgba(56, 189, 248, 0.15)" stroke="var(--blue-bright)" stroke-width="2"/>
+          <text x="200" y="234" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--blue-bright)">y_pred = model.predict(X_test)</text>
+
+          <defs>
+            <marker id="arrow-workflow" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+              <path d="M0,0 L0,8 L8,4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">// one estimator interface spans regressors, classifiers, clustering, and more</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">06 / 15</div>
+</section>
+
+<!-- SLIDE 7: SCIKIT-LEARN ARCHITECTURE -->
+<section>
+  <div class="eyebrow">§06 · Architecture</div>
+  <h2>Scikit-learn Is Built Around a Single Estimator Contract</h2>
+  <div class="cols">
+    <div class="col">
+      <p>Scikit-learn keeps machine learning projects consistent by exposing a small estimator interface and then reusing it across supervised regressors, classifiers, clustering algorithms, preprocessors, and pipelines. That lets you swap models without rewriting the surrounding workflow.</p>
+      <ul>
+        <li><strong>Estimator core:</strong> models expose a common fit, transform, predict, and score-style API/library.</li>
+        <li><strong>Composition:</strong> pipelines and feature unions chain preprocessing and modeling steps together.</li>
+        <li><strong>Shared utilities:</strong> model selection, metrics, and validation all plug into the same workflow.</li>
+        <li class="li-amber"><strong>Result:</strong> one abstraction scales across regressors, classifiers, clustering, and more.</li>
+      </ul>
+    </div>
+    <div class="col" style="max-width: 500px;">
+      <div class="diagram-wrap" style="padding: 24px;">
+        <svg viewBox="0 0 400 430" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <text x="200" y="18" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)" letter-spacing="0.08em">SCIKIT-LEARN ARCHITECTURE</text>
+
+          <rect x="35" y="38" width="330" height="48" rx="8" fill="var(--panel-2)" stroke="var(--blue-bright)" stroke-width="2"/>
+          <text x="200" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">User Code / Notebooks</text>
+
+          <line x1="200" y1="86" x2="200" y2="104" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-skl-arch)"/>
+
+          <rect x="20" y="108" width="360" height="56" rx="8" fill="rgba(56, 189, 248, 0.15)" stroke="var(--blue)" stroke-width="2"/>
+          <text x="200" y="134" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--blue-bright)">Scikit-learn Public API</text>
+          <text x="200" y="152" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">fit() • predict() • transform() • score()</text>
+
+          <line x1="200" y1="164" x2="200" y2="182" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-skl-arch)"/>
+
+          <rect x="20" y="186" width="360" height="70" rx="8" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+          <text x="200" y="212" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--amber)">Machine Learning Modules</text>
+          <text x="200" y="232" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Classification • Regression</text>
+          <text x="200" y="248" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Clustering • Pipelines • Metrics</text>
+
+          <line x1="200" y1="256" x2="200" y2="274" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-skl-arch)"/>
+
+          <rect x="20" y="278" width="360" height="62" rx="8" fill="var(--panel-2)" stroke="var(--grid)" stroke-width="2"/>
+          <text x="200" y="303" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Scientific Computing Libraries</text>
+          <text x="200" y="322" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">NumPy • SciPy • joblib • Cython</text>
+
+          <line x1="200" y1="340" x2="200" y2="358" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-skl-arch)"/>
+
+          <rect x="20" y="362" width="360" height="56" rx="8" fill="rgba(56, 189, 248, 0.1)" stroke="var(--coral)" stroke-width="2"/>
+          <text x="200" y="387" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--coral)">BLAS/LAPACK • OpenMP • CPU</text>
+
+          <defs>
+            <marker id="arrow-skl-arch" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+              <path d="M0,0 L0,8 L8,4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">// the API/library stays thin while composition and backends do the heavy lifting</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">07 / 15</div>
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 8: PROFESSIONAL IMPACT -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§07 · Professional Development</div>
+
+<h2>Beyond Applications: Demonstrating Software Engineering Skills</h2>
+
+<div class="cols">
+
+<div class="col">
+
+<p>
+Developing a reusable library demonstrates competencies that extend
+beyond implementing a single application. It showcases the ability to
+design software that can be maintained, extended, and reused by others.
+</p>
+
+<ul>
+
+<li>
+<strong>Software architecture.</strong>
+Designing modular components, clear abstractions, and well-defined
+interfaces instead of solving only one specific problem.
+</li>
+
+<li class="li-amber">
+<strong>API design.</strong>
+Creating intuitive, documented, and stable interfaces that allow other
+developers to build applications on top of the library.
+</li>
+
+<li class="li-coral">
+<strong>Software quality.</strong>
+Developing reusable code supported by testing, documentation,
+versioning, packaging, and reproducible examples.
+</li>
+
+<li>
+<strong>Professional portfolio.</strong>
+An installable package with documentation and examples provides tangible
+evidence of software engineering practices and long-term maintainability.
+</li>
+
+</ul>
+
+<p style="margin-top:22px;">
+
+<strong>Key takeaway:</strong>
+
+A library is more than a programming project—it is a reusable software
+product that demonstrates design, engineering, and collaboration skills.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="footer-tag">08 / 15</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 9: CASE STUDY -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§08 · Case Study</div>
+
+<h2>STAL — A Scientific Library for Spatio-Temporal Analytics</h2>
+
+<div class="cols">
+
+<div class="col">
+
+<p>
+STAL (Spatio-Temporal Analytics Library) illustrates how a capstone
+project can evolve from a single-purpose application into reusable
+scientific software.
+</p>
+
+<ul>
+
+<li>
+<strong>The challenge.</strong>
+Spatio-temporal data analysis often requires repeated workflows for data
+cleaning, feature engineering, spatial operations, forecasting, and
+visualization across multiple projects.
+</li>
+
+<li class="li-amber">
+<strong>The solution.</strong>
+STAL encapsulates these workflows into modular, reusable components
+accessible through a consistent public API.
+</li>
+
+<li class="li-coral">
+<strong>The outcome.</strong>
+Instead of rewriting analysis pipelines for every new dataset,
+researchers can reuse tested implementations, improving productivity,
+reproducibility, and software quality.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="footer-tag">09 / 15</div>
+
+</section>
+
+<!-- SLIDE 10: STAL ARCHITECTURE -->
+<section>
+  <div class="eyebrow">§09 · Architecture</div>
+  <div class="cols">
+    <div class="col">
+      <h2>The STAL Library Is Organized as a Thin Public Surface Over a Deep Stack</h2>
+      <p>STAL is designed so researchers only touch a small, expressive public API/library, while the real work happens in domain modules, scientific packages, and lower-level computational backends. That separation keeps the interface simple without sacrificing performance or flexibility.</p>
+      <ul>
+        <li><strong>Researcher-facing API/library:</strong> a compact entry point for forecasting, clustering, interpolation, and other tasks.</li>
+        <li><strong>Domain modules:</strong> feature engineering, optimization, spatial analysis, and visualization remain modular and reusable.</li>
+        <li><strong>Scientific stack:</strong> NumPy, SciPy, PyTorch, TensorFlow, Rasterio, GeoPandas, and Xarray provide the heavy lifting.</li>
+        <li class="li-amber"><strong>Backends:</strong> Python, Numba, CUDA, C++, and Rust give STAL room to scale without changing the public interface.</li>
+      </ul>
+    </div>
+    <div class="col" style="max-width: 480px;">
+      <div class="diagram-wrap" style="padding: 16px;">
+        <svg viewBox="0 0 420 520" width="100%" style="display:block; margin:0 auto; transform: scale(0.86); transform-origin: top center;" xmlns="http://www.w3.org/2000/svg">
+          <text x="210" y="20" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)" letter-spacing="0.08em">STAL ARCHITECTURE</text>
+
+          <rect x="60" y="34" width="300" height="42" rx="8" fill="var(--panel-2)" stroke="var(--blue-bright)" stroke-width="2"/>
+          <text x="210" y="60" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--text)">Researcher</text>
+
+          <line x1="210" y1="76" x2="210" y2="96" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-stal)"/>
+
+          <rect x="40" y="100" width="340" height="66" rx="8" fill="rgba(56, 189, 248, 0.15)" stroke="var(--blue)" stroke-width="2"/>
+          <text x="210" y="116" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--blue-bright)">stal.forecast()</text>
+          <text x="210" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--blue-bright)">stal.cluster()</text>
+          <text x="210" y="156" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--blue-bright)">stal.interpolate()</text>
+
+          <line x1="210" y1="166" x2="210" y2="184" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-stal)"/>
+
+          <rect x="20" y="188" width="380" height="36" rx="6" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+          <text x="210" y="211" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--amber)">STAL Public API</text>
+
+          <line x1="210" y1="224" x2="210" y2="238" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-stal)"/>
+
+          <rect x="20" y="242" width="380" height="86" rx="8" fill="var(--panel-2)" stroke="var(--grid)" stroke-width="2"/>
+          <text x="210" y="266" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--text)">Domain Modules</text>
+          <text x="210" y="288" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">Datasets · Forecasting · Spatial Analysis</text>
+          <text x="210" y="306" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">Visualization · Feature Engineering · Optimization</text>
+
+          <line x1="210" y1="328" x2="210" y2="344" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-stal)"/>
+
+          <rect x="20" y="348" width="380" height="86" rx="8" fill="var(--panel-2)" stroke="var(--grid)" stroke-width="2"/>
+          <text x="210" y="372" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--text)">Scientific Stack</text>
+          <text x="210" y="394" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">NumPy · SciPy · PyTorch · TensorFlow</text>
+          <text x="210" y="412" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">Rasterio · GeoPandas · Xarray</text>
+
+          <line x1="210" y1="434" x2="210" y2="450" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow-stal)"/>
+
+          <rect x="20" y="454" width="380" height="66" rx="8" fill="rgba(56, 189, 248, 0.1)" stroke="var(--coral)" stroke-width="2"/>
+          <text x="210" y="478" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" fill="var(--coral)">Computational Backends</text>
+          <text x="210" y="500" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--muted)">Python · Numba · CUDA · C++ · Rust</text>
+
+          <defs>
+            <marker id="arrow-stal" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto">
+              <path d="M0,0 L0,8 L8,4 Z" fill="var(--muted)"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">// one small public surface hides the layered scientific implementation beneath</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">10 / 15</div>
+</section>
+
+<!-- SLIDE 11: SYSTEM ARCHITECTURE -->
+<section>
+  <div class="eyebrow">§10 · System Architecture</div>
+  <h2>API/library-Centric Modular Architecture</h2>
+  <div class="diagram-wrap" style="max-width:860px;">
+    <svg viewBox="0 0 760 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      
+      <!-- Layer 1: API/library -->
+      <rect x="140" y="10" width="480" height="70" rx="4" fill="rgba(56, 189, 248, 0.1)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="380" y="40" text-anchor="middle" font-family="Sora" font-weight="600" font-size="16" fill="var(--blue-bright)">High-Level API/library (User-Facing)</text>
+      <text x="380" y="60" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Class constructors, method signatures, parameter validation</text>
+
+      <line x1="380" y1="80" x2="380" y2="105" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow8)"/>
+
+      <!-- Layer 2: Modules -->
+      <rect x="140" y="115" width="480" height="70" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="380" y="145" text-anchor="middle" font-family="Sora" font-weight="600" font-size="16" fill="var(--amber)">Modular Analysis Components</text>
+      <text x="380" y="165" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Time-Series Filtering · Network Clustering · Feature Engineering</text>
+
+      <line x1="380" y1="185" x2="380" y2="210" stroke="var(--muted)" stroke-width="2" marker-end="url(#arrow8)"/>
+
+      <!-- Layer 3: Backends -->
+      <rect x="140" y="220" width="480" height="70" rx="4" fill="var(--panel-2)" stroke="var(--grid)" stroke-width="2"/>
+      <text x="380" y="250" text-anchor="middle" font-family="Sora" font-weight="600" font-size="16" fill="var(--muted)">Interchangeable Backends</text>
+      <text x="380" y="270" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Pandas DataFrames · SciPy Sparse Matrices · NumPy Arrays</text>
+
+      <defs>
+        <marker id="arrow8" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/></marker>
+      </defs>
+    </svg>
+    <div class="diagram-caption">// A loosely coupled architecture ensures stability as underlying algorithms evolve.</div>
+  </div>
+  <div class="footer-tag">11 / 15</div>
+</section>
+
+<!-- SLIDE 12: SDLC -->
+<section>
+  <div class="eyebrow">§11 · Development Process</div>
+  <h2>API/library-First Development Cadence</h2>
+  <p>Building a framework requires moving away from feature-driven sprints toward API/library and release-driven engineering:</p>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 760 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="130" x2="740" y2="130" stroke="var(--grid)" stroke-width="2"/>
+      
+      <!-- sprint 1 -->
+      <rect x="20" y="30" width="220" height="70" rx="4" fill="var(--panel-2)" stroke="var(--blue)" stroke-width="2"/>
+      <text x="130" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--blue-bright)">1 · API/library DESIGN</text>
+      <text x="130" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Method Signatures</text>
+      <text x="130" y="87" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Mocking User Experience</text>
+      <circle cx="130" cy="130" r="6" fill="var(--blue-bright)"/>
+
+      <!-- sprint 2 -->
+      <rect x="270" y="30" width="220" height="70" rx="4" fill="var(--panel-2)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="380" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--amber)">2 · IMPLEMENTATION</text>
+      <text x="380" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Core Logic & Modules</text>
+      <text x="380" y="87" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Rigorous Unit Testing</text>
+      <circle cx="380" cy="130" r="6" fill="var(--amber)"/>
+
+      <!-- sprint 3 -->
+      <rect x="520" y="30" width="220" height="70" rx="4" fill="var(--panel-2)" stroke="var(--coral)" stroke-width="2"/>
+      <text x="630" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="var(--coral)">3 · RELEASE ENG</text>
+      <text x="630" y="72" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Documentation Generation</text>
+      <text x="630" y="87" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--text)">Packaging & PyPI</text>
+      <circle cx="630" cy="130" r="6" fill="var(--coral)"/>
+    </svg>
+  </div>
+  <div class="footer-tag">12 / 15</div>
+</section>
+
+<!-- SLIDE 13: DEVOPS INFRA -->
+<section>
+  <div class="eyebrow">§12 · Developer Infrastructure</div>
+  <h2>Testing & Release Engineering</h2>
+  <p>Library grading is naturally tied directly to modern DevOps practices and community standards.</p>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num">SemVer</div>
+      <div class="label">Semantic Versioning</div>
+      <p>Managing breaking changes gracefully across version iterations (e.g., `v1.2.0`).</p>
+    </div>
+    <div class="stat-card">
+      <div class="num">CI / CD</div>
+      <div class="label">Automated Pipelines</div>
+      <p>GitHub Actions automatically runs formatting, linting, and PyTest on every commit.</p>
+    </div>
+    <div class="stat-card">
+      <div class="num">PyPI</div>
+      <div class="label">Package Registry</div>
+      <p>Students navigate authentic deployment, allowing the scientific community to `pip install` their work.</p>
+    </div>
+  </div>
+  <div class="footer-tag">13 / 15</div>
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 14: DEFINITION OF DONE -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§13 · Success Criteria</div>
+
+<h2>Redefining the Definition of Done</h2>
+
+<p>
+A library is complete not when it "works once," but when it can be
+understood, reused, tested, and extended by other developers.
+</p>
+
+<ul>
+
+<li>
+<strong>Reliable implementation.</strong>
+Core functionality is validated through automated testing, reproducible
+results, and performance evaluation.
+</li>
+
+<li class="li-amber">
+<strong>Well-designed API.</strong>
+Public functions and classes are intuitive, consistent, documented, and
+stable, allowing developers to build applications with minimal effort.
+</li>
+
+<li class="li-coral">
+<strong>Reusable software product.</strong>
+The library is packaged for distribution, accompanied by documentation,
+examples, tutorials, and version control to support long-term use and
+maintenance.
+</li>
+
+<li>
+<strong>Engineering quality.</strong>
+The codebase follows established software engineering practices,
+including modular architecture, continuous integration, code review,
+and maintainability.
+</li>
+
+</ul>
+
+<div class="callout" style="margin-top:24px;">
+
+<strong>
+
+Success is measured not only by correct algorithms, but by the quality,
+reusability, and sustainability of the software delivered.
+
+</strong>
+
+</div>
+
+<div class="footer-tag">14 / 15</div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- SLIDE 15: CONCLUSION -->
+<!-- ========================================================= -->
+
+<section>
+
+<div class="eyebrow">§14 · Conclusion</div>
+
+<h2>Expanding the Capstone Vision</h2>
+
+<div class="cols">
+
+<div class="col">
+
+<p>
+Software applications will always remain an essential capstone option.
+However, modern software engineering also depends on reusable libraries,
+frameworks, and developer tools that enable entire ecosystems of
+applications.
+</p>
+
+<ul>
+
+<li>
+<strong>Broader learning opportunities.</strong>
+Students can choose projects aligned with their interests, whether
+building applications, scientific libraries, frameworks, or developer
+toolkits.
+</li>
+
+<li class="li-amber">
+<strong>Deeper software engineering.</strong>
+Library development emphasizes abstraction, API design, modular
+architecture, testing, documentation, packaging, and long-term
+maintainability.
+</li>
+
+<li class="li-blue">
+<strong>A stronger software portfolio.</strong>
+Graduates leave with software products that demonstrate reusable
+engineering solutions, not only completed applications.
+</li>
+
+</ul>
+
+<div class="callout" style="margin-top:28px;">
+
+<strong>
+
+<div class="callout" style="margin-top:30px;">
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:80px;
+">
+
+<div style="text-align:center;">
+
+<i class="fas fa-window-maximize"
+style="font-size:70px;color:var(--blue-bright);"></i>
+
+<h3 style="margin-top:15px;">Application</h3>
+
+<p>Solves one problem</p>
+
+</div>
+
+<div style="
+font-size:52px;
+color:var(--muted);
+">
+
+→
+
+</div>
+
+<div style="text-align:center;">
+
+<i class="fas fa-cubes"
+style="font-size:70px;color:var(--amber);"></i>
+
+<h3 style="margin-top:15px;">Library</h3>
+
+<p>Enables many applications</p>
+
+</div>
+
+</div>
+
+</div>
+
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-tag">15 / 15</div>
+
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    center: false,
+    transition: 'fade',
+    width: 1200,
+    height: 700,
+    margin: 0.08
+  });
+</script>
+</body>
+</html>
