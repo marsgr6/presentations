@@ -152,6 +152,125 @@
   }
 
   .reveal a { color: var(--amber); }
+
+  img, svg {
+    max-width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .reveal .slides section {
+      padding: 32px !important;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .reveal h1 { font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.12; }
+    .reveal h2 { font-size: clamp(1.35rem, 5vw, 1.8rem); line-height: 1.18; }
+    .reveal h3 { font-size: clamp(1.05rem, 4vw, 1.2rem); }
+    .reveal p,
+    .reveal li {
+      font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+      line-height: 1.55;
+    }
+
+    .eyebrow {
+      font-size: 0.55em;
+      margin-bottom: 14px;
+      gap: 8px;
+    }
+
+    .cols,
+    .stat-grid {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .col {
+      width: 100%;
+      max-width: 100% !important;
+    }
+
+    .diagram-wrap {
+      padding: 18px !important;
+      margin-top: 16px;
+      border-radius: 10px;
+    }
+
+    .diagram-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .title-slide {
+      justify-content: flex-start;
+      padding-top: 8px;
+    }
+
+    .title-slide .sub {
+      max-width: 100%;
+      padding-left: 16px;
+      margin-top: 18px;
+    }
+
+    .title-slide .presenter {
+      margin-top: 32px;
+    }
+
+    .reveal ul li {
+      padding-left: 28px;
+      margin-bottom: 16px;
+    }
+
+    .reveal ul li::before {
+      width: 9px;
+      height: 9px;
+      top: 10px;
+    }
+
+    .stat-card {
+      padding: 18px;
+    }
+
+    .footer-tag {
+      position: static;
+      right: auto;
+      bottom: auto;
+      margin-top: 20px;
+      text-align: right;
+      display: block;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .reveal .slides section {
+      padding: 24px !important;
+    }
+
+    .reveal h1 { font-size: clamp(1.55rem, 8vw, 2.05rem); }
+    .reveal h2 { font-size: clamp(1.2rem, 6.2vw, 1.55rem); }
+    .reveal p,
+    .reveal li {
+      font-size: 0.95rem;
+    }
+
+    .diagram-wrap {
+      padding: 14px !important;
+    }
+
+    .diagram-caption {
+      font-size: 0.46em;
+    }
+
+    .title-slide .kicker {
+      font-size: 0.52em;
+      margin-bottom: 16px;
+    }
+
+    .title-slide .presenter {
+      font-size: 0.58em;
+    }
+  }
 </style>
 </head>
 <body>
